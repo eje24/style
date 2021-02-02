@@ -1,0 +1,657 @@
+\ProvidesPackage{eje}
+\RequirePackage{kvoptions}
+%Many thanks to Jason Chen, on whose style file this one is almost entirely based on
+%Provides version 2.0 of eje.sty
+%Improvements include:
+%Color options
+%
+%
+%
+%
+%
+%
+%
+
+\newif\ifeje@date        \eje@datetrue
+\newif\ifeje@sf          \eje@sftrue
+\newif\ifeje@header      \eje@headerfalse
+\newif\ifeje@gray        \eje@grayfalse
+\newif\ifeje@box         \eje@boxtrue
+\newif\ifeje@algos       \eje@algosfalse
+\newif\ifeje@asy         \eje@asyfalse
+\newif\ifeje@code        \eje@codefalse
+\newif\ifeje@compact     \eje@compactfalse
+\newif\ifeje@marginnum   \eje@marginnumtrue
+\newif\ifeje@sepcounters \eje@sepcountersfalse
+\newif\ifeje@monochrome  \eje@monochromefalse
+\newif\ifeje@newpage    \eje@newpagefalse
+\newif\ifeje@homework   \eje@homeworkfalse
+
+
+
+\DeclareVoidOption{nodate}{\eje@datefalse}
+\DeclareVoidOption{serifs}{\eje@sffalse}
+\DeclareVoidOption{header}{\eje@headertrue}
+\DeclareVoidOption{gray}{\eje@graytrue}
+\DeclareVoidOption{nobox}{\eje@boxfalse}
+\DeclareVoidOption{asy}{\eje@asytrue}
+\DeclareVoidOption{algos}{\eje@algostrue}
+\DeclareVoidOption{code}{\eje@codetrue\eje@algostrue}
+\DeclareVoidOption{compact}{\eje@compacttrue}
+\DeclareVoidOption{nomarginnum}{\eje@marginnumfalse}
+\DeclareVoidOption{sepcounters}{\eje@sepcounterstrue}
+\DeclareVoidOption{homework}{\eje@homeworktrue \eje@monochrometrue}
+\DeclareVoidOption{monochrome}{\eje@monochrometrue}
+\DeclareVoidOption{newpage}{\eje@newpagetrue}
+\DeclareStringOption[Fuchsia]{monocolor}
+\DeclareStringOption[Orange]{claimcolor}
+\DeclareStringOption[Ezra Erives]{name}
+\DeclareStringOption[OrangeRed]{hlcolor}
+
+\ProcessKeyvalOptions*
+
+% \newcommand{\mcolor}{\eje@monocolor}
+
+\KOMAoptions{
+	paper=letter,
+	fontsize=10pt,
+	usegeometry,
+	numbers=noendperiod,
+}
+
+% General
+\ifeje@gray\PassOptionsToPackage{gray}{xcolor}\fi
+
+% FROM chezbase
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+
+\RequirePackage[T1]{fontenc}
+% \RequirePackage[frak=boondox, frakscaled=0.98, scr=boondoxo]{mathalfa}
+% \RequirePackage{ejeint} % More integrals (e.g. \oiint)
+
+\RequirePackage{mathtools, amssymb, amsthm}
+\RequirePackage{nccmath}
+
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs} % Better table commands
+\RequirePackage{array}
+
+%For homework organization
+\ifeje@homework \RequirePackage{subfiles} \fi
+
+
+% Make \bfseries include \boldmath
+\g@addto@macro\bfseries{\boldmath}
+
+%% Make cases environment use \lbrack instead of \lbrace
+%\patchcmd{\env@cases}{\lbrace}{\lbrack}{}{}
+
+% I use this enough to need this
+\definecolor{todocolor}{rgb}{0.8, 0.1, 0.1}
+\NewDocumentCommand{\TODO}{o}{\textcolor{todocolor}{TODO\IfNoValueF{#1}{: #1}}}
+
+% Emphasizing
+% \definecolor{emphcolor}{rgb}{0, 0.4, 1}
+% \NewDocumentCommand{\vocab}{m}{\textbf{\textcolor{emphcolor}{#1}}}
+\NewDocumentCommand{\hl}{m}{\textbf{\textcolor{\eje@hlcolor}{#1}}}
+\NewDocumentCommand{\ol}{}{\overline}
+\NewDocumentCommand{\ul}{}{\underline}
+
+% Syntactically-named delimiters
+\DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+\DeclarePairedDelimiter{\parens}{\lparen}{\rparen}
+\DeclarePairedDelimiter{\brackets}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\angles}{\langle}{\rangle}
+\DeclarePairedDelimiter{\verts}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\Verts}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\DeclarePairedDelimiterX{\set}[1]{\lbrace}{\rbrace}{
+	\RenewDocumentCommand{\mid}{}{\;\delimsize\vert\;}%
+	#1
+}
+
+% Semantically-named delimiters
+\NewDocumentCommand{\abs}{}{\verts}
+\NewDocumentCommand{\size}{}{\verts}
+\NewDocumentCommand{\norm}{}{\Verts}
+\NewDocumentCommand{\tuple}{}{\angles}
+\NewDocumentCommand{\gen}{}{\angles}
+
+% Symbols
+\NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\nullset}{}{\varnothing}
+\NewDocumentCommand{\bigand}{}{\bigwedge}
+\NewDocumentCommand{\bigor}{}{\bigvee}
+
+% Common Math
+\NewDocumentCommand{\half}{}{\frac{1}{2}}
+\NewDocumentCommand{\cbrt}{m}{\sqrt[3]{#1}}
+
+% Sets
+\NewDocumentCommand{\FF}{}{\mathbb F}
+\NewDocumentCommand{\NN}{}{\mathbb N}
+\NewDocumentCommand{\ZZ}{}{\mathbb Z}
+\NewDocumentCommand{\QQ}{}{\mathbb Q}
+\NewDocumentCommand{\RR}{}{\mathbb R}
+\NewDocumentCommand{\CC}{}{\mathbb C}
+\NewDocumentCommand{\HH}{}{\mathbb H}
+\NewDocumentCommand{\EE}{}{\mathbb E}
+\NewDocumentCommand{\PP}{}{\mathbb P}
+
+\NewDocumentCommand{\intersect}{}{\cap}
+\NewDocumentCommand{\bigintersect}{}{\bigcap}
+\NewDocumentCommand{\union}{}{\cup}
+\NewDocumentCommand{\bigunion}{}{\bigcup}
+
+% General
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\RenewDocumentCommand{\Re}{}{\operatorname{Re}} % can't use DeclareMathOperator because already defined
+\RenewDocumentCommand{\Im}{}{\operatorname{Im}}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\sign}{sgn}
+
+% Combinatorics / Statistics
+\NewDocumentCommand{\EExp}{}{\operatorname{\mathbb E}}
+\NewDocumentCommand{\PProb}{}{\operatorname{\mathbb P}}
+\DeclareMathOperator{\Var}{Var}
+
+% Geometry
+\NewDocumentCommand{\dg}{}{^\circ}
+\NewDocumentCommand{\seg}{m}{\overrightarrow{#1}}
+\NewDocumentCommand{\ray}{m}{\overrightarrow{#1}}
+\NewDocumentCommand{\dang}{}{\measuredangle}
+
+% Number Theory
+\RenewDocumentCommand{\mod}{m}{\ \mathrm{mod}\ #1}
+\DeclareMathOperator*{\lcm}{lcm}
+
+% Calculus
+\NewDocumentCommand{\dv}{s m m}{
+	\IfBooleanTF{#1}
+		{d#2/d#3}
+		{\frac{d #2}{d #3}}
+}
+\NewDocumentCommand{\dnv}{s m m m}{
+	\IfBooleanTF{#1}
+		{d^{#4}#2/d{#3}^{#4}}
+		{\frac{d^{#4} #2}{d {#3}^{#4}}}
+}
+\NewDocumentCommand{\ddv}{s m m}{
+	\IfBooleanTF{#1}
+		{\dnv*{#2}{#3}{2}}
+		{\dnv{#2}{#3}{2}}
+}
+\NewDocumentCommand{\pdv}{s m m}{
+	\IfBooleanTF{#1}
+		{\partial #2/\partial #3}
+		{\frac{\partial #2}{\partial #3}}
+}
+\NewDocumentCommand{\pdnv}{s m m m}{
+	\IfBooleanTF{#1}
+		{\partial^{#4}#2/\partial{#3}^{#4}}
+		{\frac{\partial^{#4} #2}{\partial {#3}^{#4}}}
+}
+\NewDocumentCommand{\pddv}{s m m}{
+	\IfBooleanTF{#1}
+		{\pdnv*{#2}{#3}{2}}
+		{\pdnv{#2}{#3}{2}}
+}
+
+\let\obelus\div
+\let\div\relax % was originally the division symbol
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\div}{div}
+\DeclareMathOperator{\curl}{curl}
+
+% Algebra
+\DeclareMathOperator{\ord}{ord}
+\NewDocumentCommand{\iso}{}{\DOTSB\cong}
+\NewDocumentCommand{\inv}{}{^{-1}}
+\NewDocumentCommand{\transp}{}{^{\mathsf T}}
+
+\DeclareMathOperator{\degree}{deg}
+
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Char}{char} % characteristic of a ring; \char already exists
+\DeclareMathOperator{\img}{im} % \ker is already defined
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Aut}{Aut}
+
+%Matrix Groups
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\SP}{SP}
+\DeclareMathOperator{\Orth}{O}
+
+%Lie Things
+\DeclareMathOperator{\gl}{\mathfrak{gl}}
+\DeclareMathOperator{\spl}{\mathfrak{sl}}
+\DeclareMathOperator{\so}{\mathfrak{so}}
+\DeclareMathOperator{\su}{\mathfrak{su}}
+\DeclareMathOperator{\spin}{\mathfrak{sp}}
+
+
+
+\DeclareMathOperator{\Gal}{Gal}
+
+%Complexity
+\DeclareMathOperator{\poly}{P}
+\DeclareMathOperator{\npoly}{NP}
+\DeclareMathOperator{\tsat}{3-SAT}
+
+%18.404
+\newcommand{\tok}[1]{\langle \mbox{\textsc{#1}} \rangle}
+\newcommand{\st}[1]{\mbox{\texttt{#1}}}
+\newcommand{\cfgor}{\ | \ }
+\newcommand{\cfgarrow}{&\rightarrow&}
+\newcommand{\lcfgarrow}{\rightarrow}
+\newcommand{\setb}[1]{\{\brk{#1}| \ }
+\newcommand{\setend}{\ensuremath{\}}}
+\newcommand{\brk}[1]{\langle #1 \rangle}
+\newcommand{\lang}[1]{\ensuremath{\text{\textit{#1}}}}
+
+%6.046
+\newcommand{\XX}{\textbf{X} }
+\newcommand{\YY}{\textbf{Y} }
+\newcommand{\NTS}{\textbf{NeedToSort}}
+
+\RequirePackage{algpseudocode}
+\newenvironment{alg}{\begin{algorithm}\begin{algorithmic}}{\end{algorithmic}\end{algorithm}}
+%END chezBASE
+
+% Typography
+% \RequirePackage{lmodern}
+\usepackage{cmbright}
+\usefont{T1}{cmtl}{m}{n}
+\ifeje@sf
+	\RequirePackage[defaultsans, scale=0.95]{lato}
+	\SetMathAlphabet\mathsf{normal}{OT1}{\sfdefault}{m}{n}
+	\SetMathAlphabet\mathsf{bold}{OT1}{\sfdefault}{b}{n}
+\fi
+\RequirePackage{microtype}
+\RequirePackage[nodisplayskipstretch, onehalfspacing]{setspace}
+
+% Page Margins
+\RequirePackage{geometry}
+\geometry{margin=2.0cm, includefoot}
+\ifeje@header\geometry{includehead}\fi
+
+% Headers
+\ifeje@header\RequirePackage{scrlayer-scrpage}\fi
+
+% Compact Option
+\ifeje@compact\RequirePackage[extreme]{savetrees}\fi
+
+% Diagrams
+\RequirePackage{tikz}
+\usetikzlibrary{calc, cd, math, positioning}
+\ifeje@asy\RequirePackage[inline]{asymptote}\fi
+
+% Macros
+\RequirePackage[shortlabels, inline]{enumitem}
+
+% Theorem Boxes
+\ifeje@box\RequirePackage{tcolorbox}\fi
+
+% References
+\PassOptionsToPackage{pdftex, pdfcreator={LaTeX with eje.sty by Jason Chen}}{hyperref}
+\ifeje@gray
+	\RequirePackage{hyperref}
+\else
+	\RequirePackage[colorlinks]{hyperref} % load this last generally
+	\definecolor{urlcolor}{rgb}{0.9, 0, 0.5}
+	\definecolor{linkcolor}{rgb}{0, 0.2, 0.8}
+	\definecolor{citecolor}{rgb}{0, 0.6, 0.3}
+	\hypersetup{urlcolor=urlcolor, linkcolor=linkcolor, citecolor=citecolor}
+\fi
+
+% Algorithms/Code
+\ifeje@algos\RequirePackage[noend]{algpseudocode}\fi % after hyperref because of counter issue
+\ifeje@code\RequirePackage{minted}\fi
+
+% cleveref must be loaded after hyperref
+% also is really picky and wants to be loaded after everything
+\RequirePackage[nameinlink]{cleveref}
+
+% SETUP
+\author{\eje@name}
+
+\ifeje@date\else\date{~\vspace{-3em}}\fi
+
+% Stylize things
+% \patchcmd{\@maketitle}{\huge}{\large}{}{}
+\setkomafont{author}{\normalsize\scshape}
+\setkomafont{date}{\normalsize}
+\ifeje@sf\else\setkomafont{disposition}{\normalcolor\bfseries}\fi
+\ifeje@header\setkomafont{pageheadfoot}{\normalcolor}\fi
+\RedeclareSectionCommand[beforeskip=0.4\baselineskip]{paragraph}
+
+% Section numbers in the margin
+\ifeje@marginnum
+	\RenewDocumentCommand{\sectionlinesformat}{m m m m}{\makebox[0pt][r]{#3}#4}
+\fi
+
+% Compact title
+\ifeje@compact
+	\patchcmd{\@maketitle}{\@author}{\scshape\@author}{}{}
+	\patchcmd{\@maketitle}{\large}{\large\sffamily}{}{}
+\fi
+
+\allowdisplaybreaks
+\AtBeginDocument{
+	\setlength{\belowdisplayskip}{0.5em}
+	\setlength{\belowdisplayshortskip}{0.2em}
+	\setlength{\abovedisplayskip}{0.5em}
+	\setlength{\abovedisplayshortskip}{0.2em}
+}
+
+\RenewDocumentCommand{\arraystretch}{}{0.8}
+\setlist{noitemsep, topsep=0.4em, listparindent=\parindent}
+
+% Make itemize bullets smaller
+\RenewDocumentCommand{\labelitemi}{}{$\vcenter{\hbox{\tiny\textbullet}}$}
+
+%Make enumerate use lowercase letters
+\renewcommand{\labelenumi}{\textbf{(\alph{enumi})}}
+
+% Solution environment
+\newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\square\ifeje@newpage\newpage\else\newline\fi}
+\newenvironment{tproof}{\newline\noindent \textbf{Proof: }}{\hfill \blacksquare\vspace{2mm}}
+% \newenvironment{tdef}{\newline\noindent \textbf{Definition: }}{\hfill\newline} ----- deprecated
+% \newenvironment{tlemma}{\newline\noindent \textbf{Lemma: }}{\hfill\newline} ------ deprecated
+
+
+
+% Better default bracket width/height
+\let\oldunderbracket\underbracket
+\RenewDocumentCommand{\underbracket}{O{0.12ex} O{0.6ex} m}{\oldunderbracket[#1][#2]{#3}}
+
+
+\newcommand{\obold}[1]{{\bfseries\color{\eje@claimcolor}#1}}
+
+%Claimbox - not numbered environment
+\newenvironment{claimbox}{\begin{tcolorbox}[
+    enhanced jigsaw,breakable,
+    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    colback=\eje@claimcolor!5!white,
+    colframe=\eje@claimcolor,
+    sharp corners,
+    boxrule=0mm,
+    left=0.5mm,
+    top=0.8mm,
+    bottom=0.8mm,
+    before skip=8pt plus 2pt,
+    after skip=8pt plus 2pt
+    ] \obold{Claim:}
+}{\end{tcolorbox}}
+
+\newenvironment{notebox}{\begin{tcolorbox}[
+    enhanced jigsaw,breakable,
+    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    colback=Violet!5!white,
+    colframe=Violet,
+    sharp corners,
+    boxrule=0mm,
+    left=0.5mm,
+    top=0.8mm,
+    bottom=0.8mm,
+    before skip=8pt plus 2pt,
+    after skip=8pt plus 2pt
+    ] \obold{Note:}
+}{\end{tcolorbox}}
+
+\newenvironment{cbox}[2]{
+\begin{tcolorbox}[
+    enhanced jigsaw,breakable,
+    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    colback=Violet!5!white,
+    colframe=Violet,
+    sharp corners,
+    boxrule=0mm,
+    left=0.5mm,
+    top=0.8mm,
+    bottom=0.8mm,
+    before skip=8pt plus 2pt,
+    after skip=8pt plus 2pt
+    ] \obold{#1:}
+}{\end{tcolorbox}}
+
+\newenvironment{factbox}{\begin{tcolorbox}[
+    enhanced jigsaw,breakable,
+    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    colback=Violet!5!white,
+    colframe=Violet,
+    sharp corners,
+    boxrule=0mm,
+    left=0.5mm,
+    top=0.8mm,
+    bottom=0.8mm,
+    before skip=8pt plus 2pt,
+    after skip=8pt plus 2pt
+    ] \obold{Fact:}
+}{\end{tcolorbox}}
+
+
+% Theorem boxes (Heavily copied from Daniel Zhu)
+\ifeje@box
+	\tcbuselibrary{skins, theorems, xparse, breakable}
+	\ifeje@monochrome
+       	\tcbset{
+    		ejebox/.style={
+    			enhanced jigsaw,
+    			breakable,
+    			fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    			sharp corners,
+    			boxrule=1pt,
+    			leftrule=1pt,
+    			left=5pt,
+    			coltitle=black,
+    			attach title to upper=\par,
+    		},
+    		ejemonobox/.style={
+    			ejebox,
+    			coltitle=\eje@monocolor!80!black,
+    			colframe=\eje@monocolor!80,
+    			colback=\eje@monocolor!7,
+    		},
+            ejebluethm/.style={ejemonobox, ejethm},
+    		ejegreenthm/.style={ejemonobox, ejethm},
+    	    ejeorangethm/.style={ejemonobox, ejethm},
+    	    ejeredthm/.style={ejemonobox, ejethm},
+    		ejethm/.style={
+    			theorem style=break,
+    			separator sign none,
+    			description delimiters parenthesis,
+    			description font=\normalfont\ifeje@sf\sffamily\fi\small,
+    			terminator sign none,
+    		},
+    	}
+	\else 
+    	\tcbset{
+    		ejebox/.style={
+    			enhanced jigsaw,
+    			breakable,
+    			fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    			sharp corners,
+    			boxrule=1pt,
+    			leftrule=1pt,
+    			left=5pt,
+    			coltitle=black,
+    			attach title to upper=\par,
+    		},
+    		ejebluebox/.style={
+    			ejebox,
+    			coltitle=blue!80!black,
+    			colframe=blue!80,
+    			colback=blue!7,
+    		},
+    		ejegreenbox/.style={
+    			ejebox,
+    			coltitle=green!40!black,
+    			colframe=green!70!black,
+    			colback=green!7,
+    		},
+    		ejeorangebox/.style={
+    			ejebox,
+    			coltitle=orange!80!black,
+    			colframe=orange!98!black,
+    			colback=orange!8,
+    		},
+    		ejeredbox/.style={
+    			ejebox,
+    			coltitle=red!60!black,
+    			colframe=red!80!black,
+    			colback=red!7,
+    		},
+            ejebluethm/.style={ejebluebox, ejethm},
+    		ejegreenthm/.style={ejegreenbox, ejethm},
+    	    ejeorangethm/.style={ejeorangebox, ejethm},
+    	    ejeredthm/.style={ejeredbox, ejethm},
+    		ejethm/.style={
+    			theorem style=break,
+    			separator sign none,
+    			description delimiters parenthesis,
+    			description font=\normalfont\ifeje@sf\sffamily\fi\small,
+    			terminator sign none,
+    		},
+    	}
+    \fi
+
+	\ifeje@marginnum
+		\newcommand*{\eje@drawmarginnumber}[1]{
+			\node[anchor=north east,
+				inner sep=0pt,
+				xshift=-0.8em,
+				yshift=-1.865ex,
+				font=\ifeje@sf\sffamily\fi\bfseries\color{tcbcoltitle}\mathstrut\small]
+				at (frame.north west) {#1};
+		}
+		\tcbset{
+			ejethmmargin/.style={
+				enhanced jigsaw,
+				theorem name,
+				extras unbroken and first={
+					overlay={
+						\ifdef{\thetcbthmcounter}{
+							\eje@drawmarginnumber{\thetcbthmcounter}
+						}{
+							\ifdef{\thetcbcounter}{\eje@drawmarginnumber{\thetcbcounter}}
+						}
+					},
+				},
+			},
+			ejethm/.append style=ejethmmargin,
+		}
+	\fi
+
+	% Better theorem declaration syntax (from DZhu)
+	\renewcommand{\new@tcbtheorem}[7][]{%
+		\@@newtcolorbox[
+			auto counter,%
+			crefname={#6}{#7},#1
+		]{#2}{O{} D<>{}}{#4,%
+			title={\tcb@theo@title{#3}{\thetcbcounter}{##1}},%
+			list entry={\protect\numberline{\thetcbcounter}##1},%
+			nameref={##1},%
+			code={\tcb@theo@label{#5}{##2}},%
+		}%
+		\@@newtcolorbox[#1,no counter,list inside=]{#2*}{O{}}{#4,%
+			title={\tcb@theo@title{#3}{\@empty}{##1}},%
+		}%
+	}
+	\def\newtcbtheorem{\let\@@newtcolorbox\NewTColorBox\new@tcbtheorem}
+	\def\renewtcbtheorem{\let\@@newtcolorbox\RenewTColorBox\new@tcbtheorem}
+	
+	\newcommand*\zbs@newtheorem[7]{
+		\newtcbtheorem[use counter*=#3]{#1}{#2}{#4}{#5}{#6}{#7}
+	}
+	
+	\newcommand*\zbs@numberwithin[2]{
+		\ifx#2\zbs@empty\else\numberwithin{#1}{#2}\fi
+	}
+	\newcounter{thmcounter} \zbs@numberwithin{thmcounter}{\zbs@thm@numberwithin}
+	\newcommand\zbs@thmctrmain{thmcounter}
+	\ifeje@sepcounters
+		\newcounter{probcounter} \zbs@numberwithin{probcounter}{\zbs@thm@numberwithinalt}
+		\newcommand\zbs@thmctralt{cprob}
+	\else
+		\newcommand\zbs@thmctralt{thmcounter}
+	\fi
+	
+	% the last three arguments are for cleveref names
+	\NewDocumentCommand\zbsnewtheorem{s m m m m m m}{
+		\zbs@newtheorem{#2}{#3}{\IfBooleanTF{#1}{\zbs@thmctralt}{\zbs@thmctrmain}}{#4}{#5}{#6}{#7}
+	}
+
+	\NewTColorBox{adhoctheorem}{O{} m !D(){\zbs@thmctralt} !O{} !D<>{}}{
+		ejeorangethm,
+		code={\letcs\thetcbthmcounter{the#3}},
+		theorem={#2}{#3}{#4}{#5},#1
+	}
+	\NewTColorBox{adhoctheorem*}{O{} m O{}}{
+		ejeorangethm,
+		title={\tcb@theo@title{#2}{\@empty}{#3}},#1
+	}
+
+	\zbsnewtheorem{theorem}{Theorem}{ejebluethm}{thm}{theorem}{theorems}
+	\zbsnewtheorem{lemma}{Lemma}{ejebluethm}{lem}{lemma}{lemmas}
+	\zbsnewtheorem{claim}{Claim}{ejebluethm}{claim}{claim}{claims}
+	\zbsnewtheorem{proposition}{Proposition}{ejebluethm}{prop}{proposition}{propositions}
+	\zbsnewtheorem{corollary}{Corollary}{ejebluethm}{cor}{corollary}{corollaries}
+	\zbsnewtheorem{conjecture}{Conjecture}{ejebluethm}{conj}{conjecture}{conjectures}
+% 	\zbsnewtheorem{algorithm}{Algorithm}{ejebluethm}{alg}{algorithm}{algorithms}
+
+	\zbsnewtheorem{definition}{Definition}{ejeredthm}{def}{definition}{definitions}
+
+	\zbsnewtheorem{example}{Example}{ejegreenthm}{ex}{example}{examples}
+
+	\zbsnewtheorem{fact}{Fact}{ejeorangethm}{fact}{fact}{facts}
+	\zbsnewtheorem{note}{Note}{ejeorangethm}{note}{note}{notes}
+
+    \zbsnewtheorem*{warmup}{Warmup}{ejeorangethm}{warmup}{warmup}{warmups}
+	\zbsnewtheorem*{problem}{Problem}{ejeorangethm}{problem}{problem}{problems}
+	\zbsnewtheorem*{question}{Question}{ejeorangethm}{question}{question}{questions}
+	\zbsnewtheorem*{exercise}{Exercise}{ejeorangethm}{ex}{exercise}{exercises}
+	\zbsnewtheorem*{remark}{Remark}{ejeorangethm}{remark}{remark}{remarks}
+
+	% TODO: footnotes
+	% TODO: custom package options so that environment colors can be chosen at start for example [definition=Cerulean, problem=Fuchsia...]
+\fi
+
+% Redefine to reduce surrounding spacing
+\RenewDocumentEnvironment{proof}{o}{\pushQED{\qed}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\popQED\par\medskip}
+\NewDocumentEnvironment{proof*}{m}{\pushQED{\qed}\par\noindent\textit{#1}.}{\popQED\par\medskip}
+
+% Algorithms
+\ifeje@algos
+	\NewDocumentCommand{\ElseIf}{}{\ElsIf}
+
+	% Fix https://tex.stackexchange.com/questions/177025/ issue with
+	% hyperref, cleveref, and algpseudocode
+	\newcounter{algorithmicH} % New algorithmic-like hyperref counter
+	\let\oldalgorithmic\algorithmic
+	\RenewDocumentCommand{\algorithmic}{}{%
+		\stepcounter{algorithmicH}%
+		\oldalgorithmic}%
+	\RenewDocumentCommand{\theHALG@line}{}{ALG@line.\thealgorithmicH.\arabic{ALG@line}}
+\fi
+
+\ifeje@code\setminted{linenos=true, breaklines=true, tabsize=4, python3=true, baselinestretch=1}\fi
