@@ -5,24 +5,14 @@
 %Improvements include:
 %Color options
 %
-%
-%
-%
-%
-%
-%
 
 \newif\ifeje@date        \eje@datetrue
 \newif\ifeje@sf          \eje@sftrue
 \newif\ifeje@header      \eje@headerfalse
 \newif\ifeje@gray        \eje@grayfalse
 \newif\ifeje@box         \eje@boxtrue
-\newif\ifeje@algos       \eje@algosfalse
-\newif\ifeje@asy         \eje@asyfalse
 \newif\ifeje@code        \eje@codefalse
-\newif\ifeje@compact     \eje@compactfalse
 \newif\ifeje@marginnum   \eje@marginnumtrue
-\newif\ifeje@sepcounters \eje@sepcountersfalse
 \newif\ifeje@monochrome  \eje@monochromefalse
 \newif\ifeje@newpage    \eje@newpagefalse
 \newif\ifeje@homework   \eje@homeworkfalse
@@ -30,16 +20,11 @@
 
 
 \DeclareVoidOption{nodate}{\eje@datefalse}
-\DeclareVoidOption{serifs}{\eje@sffalse}
+\DeclareVoidOption{serifs}{\eje@sftrue}
 \DeclareVoidOption{header}{\eje@headertrue}
 \DeclareVoidOption{gray}{\eje@graytrue}
 \DeclareVoidOption{nobox}{\eje@boxfalse}
-\DeclareVoidOption{asy}{\eje@asytrue}
-\DeclareVoidOption{algos}{\eje@algostrue}
-\DeclareVoidOption{code}{\eje@codetrue\eje@algostrue}
-\DeclareVoidOption{compact}{\eje@compacttrue}
 \DeclareVoidOption{nomarginnum}{\eje@marginnumfalse}
-\DeclareVoidOption{sepcounters}{\eje@sepcounterstrue}
 \DeclareVoidOption{homework}{\eje@homeworktrue \eje@monochrometrue}
 \DeclareVoidOption{monochrome}{\eje@monochrometrue}
 \DeclareVoidOption{newpage}{\eje@newpagetrue}
@@ -277,8 +262,8 @@
 \newenvironment{alg}{\begin{algorithm}\begin{algorithmic}}{\end{algorithmic}\end{algorithm}}
 %END chezBASE
 
-% Typography
-% \RequirePackage{lmodern}
+%Typography
+\RequirePackage{lmodern}
 \usepackage{cmbright}
 \usefont{T1}{cmtl}{m}{n}
 \ifeje@sf
@@ -297,13 +282,9 @@
 % Headers
 \ifeje@header\RequirePackage{scrlayer-scrpage}\fi
 
-% Compact Option
-\ifeje@compact\RequirePackage[extreme]{savetrees}\fi
-
 % Diagrams
 \RequirePackage{tikz}
 \usetikzlibrary{calc, cd, math, positioning}
-\ifeje@asy\RequirePackage[inline]{asymptote}\fi
 
 % Macros
 \RequirePackage[shortlabels, inline]{enumitem}
@@ -312,7 +293,7 @@
 \ifeje@box\RequirePackage{tcolorbox}\fi
 
 % References
-\PassOptionsToPackage{pdftex, pdfcreator={LaTeX with eje.sty by Jason Chen}}{hyperref}
+\PassOptionsToPackage{pdftex, pdfcreator={LaTeX with eje.sty by Ezra Erives}}{hyperref}
 \ifeje@gray
 	\RequirePackage{hyperref}
 \else
@@ -322,10 +303,6 @@
 	\definecolor{citecolor}{rgb}{0, 0.6, 0.3}
 	\hypersetup{urlcolor=urlcolor, linkcolor=linkcolor, citecolor=citecolor}
 \fi
-
-% Algorithms/Code
-\ifeje@algos\RequirePackage[noend]{algpseudocode}\fi % after hyperref because of counter issue
-\ifeje@code\RequirePackage{minted}\fi
 
 % cleveref must be loaded after hyperref
 % also is really picky and wants to be loaded after everything
@@ -349,12 +326,6 @@
 	\RenewDocumentCommand{\sectionlinesformat}{m m m m}{\makebox[0pt][r]{#3}#4}
 \fi
 
-% Compact title
-\ifeje@compact
-	\patchcmd{\@maketitle}{\@author}{\scshape\@author}{}{}
-	\patchcmd{\@maketitle}{\large}{\large\sffamily}{}{}
-\fi
-
 \allowdisplaybreaks
 \AtBeginDocument{
 	\setlength{\belowdisplayskip}{0.5em}
@@ -373,8 +344,9 @@
 \renewcommand{\labelenumi}{\textbf{(\alph{enumi})}}
 
 % Solution environment
-\newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\square\ifeje@newpage\newpage\else\newline\fi}
-\newenvironment{tproof}{\newline\noindent \textbf{Proof: }}{\hfill \blacksquare\vspace{2mm}}
+\newenvironment{testenv}{\noindent \textbf{BLAH}}{\hfill \ensuremath{\square}}
+\newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\ensuremath{\square}\ifeje@newpage\newpage\else\newline\fi}
+\newenvironment{tproof}{\noindent \textbf{Proof: }}{\hfill \ensuremath{\blacksquare} \vspace{2mm}}
 % \newenvironment{tdef}{\newline\noindent \textbf{Definition: }}{\hfill\newline} ----- deprecated
 % \newenvironment{tlemma}{\newline\noindent \textbf{Lemma: }}{\hfill\newline} ------ deprecated
 
@@ -450,6 +422,23 @@
 }{\end{tcolorbox}}
 
 
+\newenvironment{problembox}[2]{\begin{tcolorbox}[
+    enhanced jigsaw,breakable,
+    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    colback=CadetBlue!15!white,
+    colframe=CadetBlue,
+    sharp corners,
+    boxrule=0mm,
+    leftrule=3pt,
+    left=0.8mm,
+    top=0.8mm,
+    bottom=0.8mm,
+    before skip=8pt plus 2pt,
+    after skip=8pt plus 2pt
+    ] \textcolor{CadetBlue}{\textbf{Problem\ #1\ (#2):}}
+}{\end{tcolorbox}}
+
+
 % Theorem boxes (Heavily copied from Daniel Zhu)
 \ifeje@box
 	\tcbuselibrary{skins, theorems, xparse, breakable}
@@ -464,13 +453,14 @@
     			leftrule=1pt,
     			left=5pt,
     			coltitle=black,
-    			attach title to upper=\par,
+                detach title,
     		},
     		ejemonobox/.style={
     			ejebox,
     			coltitle=\eje@monocolor!80!black,
     			colframe=\eje@monocolor!80,
-    			colback=\eje@monocolor!7,
+                colback=\eje@monocolor!7,
+                detach title,
     		},
             ejebluethm/.style={ejemonobox, ejethm},
     		ejegreenthm/.style={ejemonobox, ejethm},
@@ -481,7 +471,8 @@
     			separator sign none,
     			description delimiters parenthesis,
     			description font=\normalfont\ifeje@sf\sffamily\fi\small,
-    			terminator sign none,
+                terminator sign none,
+                detach title,
     		},
     	}
 	\else 
@@ -495,31 +486,35 @@
     			leftrule=1pt,
     			left=5pt,
     			coltitle=black,
-    			attach title to upper=\par,
+    			detach title,
     		},
     		ejebluebox/.style={
     			ejebox,
     			coltitle=blue!80!black,
     			colframe=blue!80,
-    			colback=blue!7,
+                colback=blue!7,
+                detach title,
     		},
     		ejegreenbox/.style={
     			ejebox,
     			coltitle=green!40!black,
     			colframe=green!70!black,
-    			colback=green!7,
+                colback=green!7,
+                detach title,
     		},
     		ejeorangebox/.style={
     			ejebox,
     			coltitle=orange!80!black,
     			colframe=orange!98!black,
-    			colback=orange!8,
+                colback=orange!8,
+                detach title,
     		},
     		ejeredbox/.style={
     			ejebox,
     			coltitle=red!60!black,
     			colframe=red!80!black,
-    			colback=red!7,
+                colback=red!7,
+                detach title,
     		},
             ejebluethm/.style={ejebluebox, ejethm},
     		ejegreenthm/.style={ejegreenbox, ejethm},
@@ -561,77 +556,6 @@
 			ejethm/.append style=ejethmmargin,
 		}
 	\fi
-
-	% Better theorem declaration syntax (from DZhu)
-	\renewcommand{\new@tcbtheorem}[7][]{%
-		\@@newtcolorbox[
-			auto counter,%
-			crefname={#6}{#7},#1
-		]{#2}{O{} D<>{}}{#4,%
-			title={\tcb@theo@title{#3}{\thetcbcounter}{##1}},%
-			list entry={\protect\numberline{\thetcbcounter}##1},%
-			nameref={##1},%
-			code={\tcb@theo@label{#5}{##2}},%
-		}%
-		\@@newtcolorbox[#1,no counter,list inside=]{#2*}{O{}}{#4,%
-			title={\tcb@theo@title{#3}{\@empty}{##1}},%
-		}%
-	}
-	\def\newtcbtheorem{\let\@@newtcolorbox\NewTColorBox\new@tcbtheorem}
-	\def\renewtcbtheorem{\let\@@newtcolorbox\RenewTColorBox\new@tcbtheorem}
-	
-	\newcommand*\zbs@newtheorem[7]{
-		\newtcbtheorem[use counter*=#3]{#1}{#2}{#4}{#5}{#6}{#7}
-	}
-	
-	\newcommand*\zbs@numberwithin[2]{
-		\ifx#2\zbs@empty\else\numberwithin{#1}{#2}\fi
-	}
-	\newcounter{thmcounter} \zbs@numberwithin{thmcounter}{\zbs@thm@numberwithin}
-	\newcommand\zbs@thmctrmain{thmcounter}
-	\ifeje@sepcounters
-		\newcounter{probcounter} \zbs@numberwithin{probcounter}{\zbs@thm@numberwithinalt}
-		\newcommand\zbs@thmctralt{cprob}
-	\else
-		\newcommand\zbs@thmctralt{thmcounter}
-	\fi
-	
-	% the last three arguments are for cleveref names
-	\NewDocumentCommand\zbsnewtheorem{s m m m m m m}{
-		\zbs@newtheorem{#2}{#3}{\IfBooleanTF{#1}{\zbs@thmctralt}{\zbs@thmctrmain}}{#4}{#5}{#6}{#7}
-	}
-
-	\NewTColorBox{adhoctheorem}{O{} m !D(){\zbs@thmctralt} !O{} !D<>{}}{
-		ejeorangethm,
-		code={\letcs\thetcbthmcounter{the#3}},
-		theorem={#2}{#3}{#4}{#5},#1
-	}
-	\NewTColorBox{adhoctheorem*}{O{} m O{}}{
-		ejeorangethm,
-		title={\tcb@theo@title{#2}{\@empty}{#3}},#1
-	}
-
-	\zbsnewtheorem{theorem}{Theorem}{ejebluethm}{thm}{theorem}{theorems}
-	\zbsnewtheorem{lemma}{Lemma}{ejebluethm}{lem}{lemma}{lemmas}
-	\zbsnewtheorem{claim}{Claim}{ejebluethm}{claim}{claim}{claims}
-	\zbsnewtheorem{proposition}{Proposition}{ejebluethm}{prop}{proposition}{propositions}
-	\zbsnewtheorem{corollary}{Corollary}{ejebluethm}{cor}{corollary}{corollaries}
-	\zbsnewtheorem{conjecture}{Conjecture}{ejebluethm}{conj}{conjecture}{conjectures}
-% 	\zbsnewtheorem{algorithm}{Algorithm}{ejebluethm}{alg}{algorithm}{algorithms}
-
-	\zbsnewtheorem{definition}{Definition}{ejeredthm}{def}{definition}{definitions}
-
-	\zbsnewtheorem{example}{Example}{ejegreenthm}{ex}{example}{examples}
-
-	\zbsnewtheorem{fact}{Fact}{ejeorangethm}{fact}{fact}{facts}
-	\zbsnewtheorem{note}{Note}{ejeorangethm}{note}{note}{notes}
-
-    \zbsnewtheorem*{warmup}{Warmup}{ejeorangethm}{warmup}{warmup}{warmups}
-	\zbsnewtheorem*{problem}{Problem}{ejeorangethm}{problem}{problem}{problems}
-	\zbsnewtheorem*{question}{Question}{ejeorangethm}{question}{question}{questions}
-	\zbsnewtheorem*{exercise}{Exercise}{ejeorangethm}{ex}{exercise}{exercises}
-	\zbsnewtheorem*{remark}{Remark}{ejeorangethm}{remark}{remark}{remarks}
-
 	% TODO: footnotes
 	% TODO: custom package options so that environment colors can be chosen at start for example [definition=Cerulean, problem=Fuchsia...]
 \fi
@@ -640,18 +564,10 @@
 \RenewDocumentEnvironment{proof}{o}{\pushQED{\qed}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\popQED\par\medskip}
 \NewDocumentEnvironment{proof*}{m}{\pushQED{\qed}\par\noindent\textit{#1}.}{\popQED\par\medskip}
 
-% Algorithms
-\ifeje@algos
-	\NewDocumentCommand{\ElseIf}{}{\ElsIf}
 
-	% Fix https://tex.stackexchange.com/questions/177025/ issue with
-	% hyperref, cleveref, and algpseudocode
-	\newcounter{algorithmicH} % New algorithmic-like hyperref counter
-	\let\oldalgorithmic\algorithmic
-	\RenewDocumentCommand{\algorithmic}{}{%
-		\stepcounter{algorithmicH}%
-		\oldalgorithmic}%
-	\RenewDocumentCommand{\theHALG@line}{}{ALG@line.\thealgorithmicH.\arabic{ALG@line}}
-\fi
-
-\ifeje@code\setminted{linenos=true, breaklines=true, tabsize=4, python3=true, baselinestretch=1}\fi
+% TODO stuff
+% regular environments + colored environments
+% 
+%
+%
+%

@@ -1,0 +1,31 @@
+\ProvidesPackage{mrk}
+\RequirePackage{kvoptions}
+
+\newif\ifmrk@date \mrk@datetrue
+
+\DeclareVoidOption{nodate}{\mrk@datefalse}
+
+\ProcessKeyvalOptions*
+
+\KOMAoptions{
+	paper=letter,
+	fontsize=10pt,
+	usegeometry,
+	numbers=noendperiod,
+}
+
+% SETUP
+\author{Ben Bitdiddle}
+
+\ifmrk@date\else\date{~\vspace{-3em}}\fi
+
+\RequirePackage{mrkmath}
+
+% Stylize things
+\setkomafont{author}{\normalsize\scshape}
+\setkomafont{date}{\normalsize}
+\RedeclareSectionCommand[beforeskip=0.4\baselineskip]{paragraph}
+
+% Page Margins
+\RequirePackage{geometry}
+\geometry{margin=2.0cm, includefoot}
