@@ -1,4 +1,6 @@
 \ProvidesPackage{mrk}
+\RequirePackage{mrkmath}
+
 \RequirePackage{kvoptions}
 
 \newif\ifmrk@date \mrk@datetrue
@@ -9,21 +11,26 @@
 
 \KOMAoptions{
 	paper=letter,
-	fontsize=10pt,
+	fontsize=12pt,
 	usegeometry,
 	numbers=noendperiod,
 }
 
 % SETUP
 \author{Ben Bitdiddle}
+\vspace{20mm}
 
-\ifmrk@date\else\date{~\vspace{-3em}}\fi
-
-\RequirePackage{mrkmath}
+\ifmrk@date\else\date{~\vspace{-5em}}\fi
 
 % Stylize things
+\RequirePackage{etoolbox} %patchcmd
+% \addtokomafont{section}{\rmfamily} %controls KOMA header/section/subsection font family
 \setkomafont{author}{\normalsize\scshape}
-\setkomafont{date}{\normalsize}
+\setkomafont{date}{\normalsize\scshape}
+\setkomafont{disposition}{\centering\scshape\normalsize}
+\setkomafont{title}{\scriptsize\scshape}
+\patchcmd{\@maketitle}{\huge}{\small}{}{}
+% \addtokomafont{section}{\rmfamily\centering\scshape}
 \RedeclareSectionCommand[beforeskip=0.4\baselineskip]{paragraph}
 
 % Page Margins

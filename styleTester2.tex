@@ -1,5 +1,5 @@
 \documentclass{scrartcl}
-\usepackage[nomarginnum,homework,monocolor=Violet,name={Ezra Erives},claimcolor=Violet]{eje}
+\usepackage[nomarginnum,homework,monocolor=Emerald,name={Ezra Erives},claimcolor=Peach]{eje}
 \usepackage{fancyhdr}
 \usepackage{sectsty}
 
@@ -7,7 +7,10 @@
 \newcommand{\testBB}{\ensuremath{\mathbb{Z}}}
 \renewcommand{\thesection}{\S\arabic{section}}
 
+
 \pagestyle{fancy}
+\renewcommand{\subsectionmark}[1]{\markright{#1}}
+
 \fancyhf{}
 \lhead{Ezra Erives}
 \chead{\rightmark}
@@ -42,15 +45,14 @@ It is a long established fact that a reader will be distracted by the readable c
 
 There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
 
-
+Let's try typing some math stuff.
 
 
 \newpage
 \subsection{Diagonalizability of $e^A$}
-
-\begin{problembox}{1}{Diagonalizability of $e^A$}
-    Show that $e^A$ is diagonalizable if and only if $A$ is.
-\end{problembox}
+% \begin{problembox}{1}{Diagonalizability of $e^A$}
+%     Show that $e^A$ is diagonalizable if and only if $A$ is.
+% \end{problembox}
 \begin{solution} There are two direction to establish. We start by showing that if $A$ is diagonalizable, then so is $e^A$.
     \begin{claimbox}
     If $v$ is an eigenvector of $A$ with eigenvalue $\lambda\in \CC$, then $v$ is an eigenvector of $e^A$ with eigenvalue $e^\lambda$.
@@ -105,9 +107,6 @@ There are many variations of passages of Lorem Ipsum available, but the majority
 
 \newpage
 \subsection{Silvester's Criterion}
-\begin{problembox}{2}{Silverster's Criterion}
-    Prove Sylvester's Criterion
-\end{problembox}
 \begin{solution}
     We prove the result for the general case, in which the matrix is Hermitian. The real case follows by viewing symmetric matrices as Hermitian with real entries. Apparently, the upper left $k\times k$ sub-matrices have a name - \textit{leading principal minors}. We'll use this term from now on in reference to the determinants of these sub-matrices. We proceed via induction. The base case is clear: the matrix $\begin{bmatrix} z \end{bmatrix}$ is positive definite if and only if $z$ (the determinant) is a positive real number. Now suppose that the claim holds for all $(n-1) \times (n-1)$ Hermitian matrices. We demonstrate that the claim holds for $n\times n$ matrices as well. Let $T=\begin{bmatrix} P & v \\ v^\ast & z \end{bmatrix}$ be an $n\times n$ Hermitian matrix, where $P$ is an $(n-1) \times (n-1)$ Hermitian matrix, and $z$ is some complex number. For unitary $Q$, we have that
     \[\begin{bmatrix} Q^\ast & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} P & v \\ v^\ast & z \end{bmatrix} \begin{bmatrix} Q & 0 \\ 0 & 1 \end{bmatrix}=\begin{bmatrix} {Q^\ast} P Q & Q^\ast v \\ v^\ast Q & z \end{bmatrix}=T'.\]
@@ -136,9 +135,6 @@ There are many variations of passages of Lorem Ipsum available, but the majority
 
 \newpage
 \subsection{Conjugacy classes in $M$}
-\begin{problembox}{3}{Conjugacy classes in $M$}
-    Classify the conjugacy classes of isometries of $\RR^2$.
-\end{problembox}
 
 \begin{solution}
     Isometries of the plane can be thought of as the symmetries of some sheet of paper. If some isometry is obtained from a second by rotating, translating, or flipping the sheet of paper, then these two isometries are simply two ways of viewing the same symmetry. Indeed, the only truly distinguishing aspects of an isometry are the \cbold{magnitude of translation}, the \cbold{magnitude of rotation}, and the \cbold{presence of reflection}. We make this precise. As usual, let $r$ denote the reflection about the $x$-axis, and let $C(g)$ denote the conjugacy class of some element $g\in G$. When convenient, we let $a\sim b$ mean that $a$ and $b$ are conjugate. We start with \cbold{translations}.

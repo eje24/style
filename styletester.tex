@@ -1,18 +1,68 @@
 \documentclass{scrartcl}
-\usepackage[]{mrk}
+\usepackage[nodate]{mrk}
 
 
-\title{Style File Test}
+
+\setlength{\oddsidemargin}{.0in}
+\setlength{\evensidemargin}{.0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-.3in}
+\setlength{\headsep}{.20in}
+\setlength{\textheight}{9.in}
+
+%These commands deal with theorem-like environments (i.e., italic)
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+%These deal with definition-like environments (i.e., non-italic)
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+%\usepackage{lmodern}
+% \usepackage[T1]{fontenc}
+
+%\addtokomafont{section}{\mdseries\rmfamily\scshape}
+% \addtokomafont{subsection}{\rmfamily\centering\scshape}
+
+
+
+\title{INTRODUCTION TO DRINFIELD MODULES}
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-
-\end{abstract}
-
 \section{Introduction}
-This is a test. $\QQ$.
+Our goal is to introduce Drinfeld modules and to explain their application to explicit class
+field theory. First, however, to motivate their study, let us mention some of their applications.
+
+\section{The Next Section}\label{sec1}
+The function $\sin x$ can be defined as an infinite series
+\begin{equation}\label{sineseries}
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{k \geq 0} \frac{x^{2k+1}}{(2k+1)!}.
+\end{equation}
+Here is another way to characterize it, using differential equations and initial conditions.
+
+\begin{theorem}\label{diffthm}
+The function $\sin x$ is the unique solution of the differential equation
+\begin{equation}\label{sine-eqn}
+\frac{d^2y}{dx^2} + y = 0
+\end{equation}
+satisfying the initial conditions $y(0) = 0$ and $y'(0) = 1$.
+\end{theorem}
+
+Notice in the code for this file that the number for the theorem, , is hard-coded, and that 
+if you need to manually enter parentheses if you want the equation number to appear in text as (\ref{sine-eqn}).
+
+
+\section{The Section After That}\label{sec2}
+
+There is nothing here.
+
 \end{document}
 
 
