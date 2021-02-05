@@ -1,9 +1,8 @@
 \ProvidesPackage{eje}
 \RequirePackage{ejemath} %math related macros
-\RequirePackage{xparse,etoolbox}
+\RequirePackage{xparse,xstring,etoolbox}
 \RequirePackage{kvoptions}
 %Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise)
-%Improvements include:
 
 
 %replace with new toggle notation ---- default settings
@@ -36,6 +35,10 @@
 	numbers=noendperiod,
 }
 
+%string_test
+\newcommand{\cat}{cat}
+\newcommand{\dog}{cat}
+\newcommand{\TestIfEq}{\IfEq{\cat}{\dog}{Cat and Dog are equal!}{Cat and Dog are NOT equal}}
 
 
 %name stuff
@@ -61,6 +64,19 @@
         \ifbool{eje@header}{\setseriesheader}{}
         %TODO -- file in rest of series settings
     }
+}
+\newcommand{\setpsetstyle}[1]{
+    \IfEq{#1}{standalone}{
+        \psetstandalone %technically redundant -- default is already standalone
+    }{}
+    \IfEq{#1}{series}{
+        \psetseries
+    }{}
+}
+\newcommand{\psetnonewpage}{
+    \ifbool{eje@pset}{
+        %renew solution command so that it doesn't do a new page after each  thing
+    }{}
 }
 \newcommand{\classname}{18.701}
 \newcommand{\setpsetclass}[1]{
@@ -393,7 +409,7 @@
 
 % TODO stuff
 % regular environments + colored environments
-% 
-%
+% \newpset{name} (optional argument)
+% \newpsetproblem {conditionally does section or subsection}, argument is name of problem
 %
 %
