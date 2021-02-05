@@ -51,14 +51,14 @@
 \newcommand{\psetstandalone}{
     \ifbool{eje@pset}{
         \booltrue{eje@pset@standalone}
-        \setstandaloneheader
+        \ifbool{eje@header}{\setstandaloneheader}{}
         %TODO -- fill in rest of stand-alone settings
     }{}
 }
 \newcommand{\psetseries}{
     \ifbool{eje@pset}{
         \boolfalse{eje@pset@standalone}
-        \setseriesheader
+        \ifbool{eje@header}{\setseriesheader}{}
         %TODO -- file in rest of series settings
     }
 }
@@ -150,8 +150,6 @@
 \geometry{margin=2.0cm, includefoot}
 \ifeje@header\geometry{includehead}\fi
 
-% Headers
-\ifeje@header\RequirePackage{scrlayer-scrpage}\fi
 
 % Diagrams
 \RequirePackage{tikz}
