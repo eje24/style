@@ -22,5 +22,18 @@ This style file uses the following packages
 | xstring |  For extended string functionality |
 | etoolbox | For patching commands (such as <code> \patchcmd </code>), and extended boolean functionality.  |
 | kvoptions  | For extended option functionality (e.g. passing in string options)  |
-|   |   |
-|   |   |
+| scrlayer-scrpage  | For KOMA-script header functionality. (KOMA doesn't like fancyhdr) |
+|  subfiles |   |
+| xcolor | For fancy colors. |
+| graphicx  | For fancy graphics and image handling  |
+| lmodern  |  Font stuff |
+| cmbright  | Font stuff |
+| lato  |  Font stuff |
+|  microtype |  Font stuff |
+|  setspace | Line spacing |
+|  geometry |   |
+| tikz | For TikZ diagrams.|
+| enumitem | For lists|
+| tcolorbox | For color box environments. |
+| hyperref | For hyperlinks. |
+| cleveref | Smarter theorem referencing (currently unused) |
