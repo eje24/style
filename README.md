@@ -58,11 +58,11 @@ There are two pset settings ... BLAH BLAH FILL THIS PART IN.
 | | | |
 
 ###  <a name="color_settings"></a> Color Settings
-For coloring purposes, boxed theorem environments are partitioned into three groups: plain, def(inition), and remark. The groups are as follows.
+For coloring purposes, boxed theorem environments are partitioned into three groups: **plain**, **def(inition)**, and **remark**. The groups are as follows.
 
-* plain: theorembox, lemmabox, propbox (proposition)
-* def: corollarybox, conjecturebox, claimbox, defbox (definition)
-* remark: remarkbox
+* plain: <code>theorembox</code>, <code>lemmabox</code>, <code>propbox</code> (proposition)
+* def: <code>corollarybox</code>, <code>conjecturebox</code>, <code>claimbox</code>, <code>defbox</code> (definition)
+* remark: <code>remarkbox</code>
 
 These correspond to the three theoremstyles provided by the <code> amsthm </code> package. Colors can be set for each of these groups separately, as described below.
 | Setting | Default | What |
