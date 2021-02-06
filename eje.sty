@@ -21,6 +21,7 @@
 \DeclareVoidOption{noheader}{\boolfalse{eje@header}}
 \DeclareVoidOption{pset}{\booltrue{eje@pset}}
 \DeclareVoidOption{marginnum}{\booltrue{eje@marginnum}} %turns on margin numbers
+\DeclareVoidOption{formal}{\boolfalse{eje@causual}}
 %\DeclareStringOption[default][optionName] --> creates string \eje@optionName
 \DeclareStringOption[Orange]{claimcolor}
 \DeclareStringOption[OrangeRed]{hlcolor} %can also be set with \sethighlightcolor
@@ -153,9 +154,9 @@
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{tcolorbox}
 
-%boxed plain style
+
 \newcommand{\plaincolor}{Periwinkle}
-\newcommand{\defcolor}{Fuchsia}
+\newcommand{\defcolor}{Emerald}
 \newcommand{\remarkcolor}{SeaGreen}
 \newcommand{\setplaincolor}[1]{
     \renewcommand{\plaincolor}{#1}
@@ -167,6 +168,7 @@
     \renewcommand{\remarkcolor}{#1}
 }
 
+%boxed plain style
 \declaretheoremstyle[
     spaceabove=6pt, spacebelow=6pt,
     headfont=\normalfont\bfseries\color{\plaincolor},
@@ -486,6 +488,7 @@
     },
 }
 
+%from chez.sty 
 \newcommand*{\eje@drawmarginnumber}[1]{
     \node[anchor=north east,
         inner sep=0pt,
