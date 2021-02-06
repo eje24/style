@@ -1,8 +1,6 @@
 # style
 <p>Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
 
-<p> If you just want to make your pset look nice, skip to the [pset section](#psetting) for quick-setup instructions. </p>
-
 ## To-do:
 1. do numbered tcolorbox numbered environments :white_check_mark:
 2. do regular numbered environments :white_check_mark:
@@ -18,10 +16,11 @@
 1. [Package Options](#package_options)
 2. [Environments](#environments)
 3. [Additional Settings](#additional_settings)
-4. [Examples](#examples)
-5. [Packages](#packages)
-6. [Known Bugs](#known_bugs)
-7. [Future Features](#future_features)
+4. [Quick-Setup for psetting](#psetting)
+5. [Examples](#examples)
+6. [Packages](#packages)
+7. [Known Bugs](#known_bugs)
+8. [Future Features](#future_features)
 
 
 ## <a name="package_options"></a> Package Options
@@ -68,30 +67,23 @@ These correspond to the three theoremstyles provided by the <code> amsthm </code
 | remarkcolor | CornflowerBlue | The color of the remark group. Can be set to <code> COLOR </code> by adding <code> \setremarkcolor{COLOR}</code> to the preamble.  |
 | linkcolor | | TODO - hyperref stuff |
 
-## <a name="psetting"></a> psetting: quick setup
-
-This section describes the basic setup for writing up a problem-set.
 
 ###  <a name="pset_settings"></a> pset Settings
-There are two pset settings ... BLAH BLAH FILL THIS PART IN.
+If you're typing up a single pset assignment... BLAH BLAH FILL THIS IN
 
 | Setting | Default | What |
 | --- |---  |--- |
-| Class | 0.000 |  To set the name to <code>CLASS</code>, add <code>\setpsetclass{CLASS}</code> to the preamble of your document. |
+| Class | 0.000 |  The class to which this homework/pset belongs. To set the name to <code>CLASS</code>, add <code>\setpsetclass{CLASS}</code> to the preamble of your document. |
 | Style | standalone | To set the style to <code>STYLE</code>, add <code>\setpsetstyle{STYLE}</code> to the preamble of your document. |
-
-## <a name="problem_settings"></a> Problems
-
-For an example, see the [pset example](#pset_example).
 
 
 ## <a name="examples"></a> Examples
 
-## <a name="pset_example"></a> pset Example
+### <a name="pset_example"></a> pset Example
 
-## <a name="formal_example"></a> formal example
+### <a name="formal_example"></a> formal example
 
-## <a name="misc_example"></a> Miscellaneous Example
+### <a name="misc_example"></a> Miscellaneous Example
 
 
 ## <a name="packages"></a> Packages:
