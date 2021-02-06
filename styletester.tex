@@ -1,5 +1,15 @@
 \documentclass{scrartcl}
-\usepackage[nodate]{mrk}
+\usepackage{amsthm,thmtools}
+
+\declaretheoremstyle[
+    spaceabove=6pt, spacebelow=6pt,
+    headfont=\normalfont\bfseries,
+    notefont=\mdseries, notebraces={(}{)},
+    bodyfont=\normalfont,
+    postheadspace=1em,
+    qed=\qedsymbol
+    ]{mystyle}
+\declaretheorem[style=mystyle]{styledtheorem}
 
 
 
@@ -38,6 +48,10 @@
 \section{Introduction}
 Our goal is to introduce Drinfeld modules and to explain their application to explicit class
 field theory. First, however, to motivate their study, let us mention some of their applications.
+
+\begin{styledtheorem}[Euclid]
+    For every prime $p$\dots
+    \end{styledtheorem}
 
 \section{The Next Section}\label{sec1}
 The function $\sin x$ can be defined as an infinite series
