@@ -47,20 +47,30 @@ Additional settings can be specified in the preamble of your document. Some gene
 ###  <a name="pset_settings"></a> pset Settings
 There are two pset settings ... BLAH BLAH FILL THIS PART IN.
 
-| Setting | Default | How to Change|
+| Setting | Default | What |
 | --- |---  |--- |
 | Class | 0.000 |  To set the name to <code>CLASS</code>, add <code>\setpsetclass{CLASS}</code> to the preamble of your document. |
 | Style | standalone | To set the style to <code>STYLE</code>, add <code>\setpsetstyle{STYLE}</code> to the preamble of your document. |
 
 ### <a name="header_settings"></a> Header Settings 
-| Setting | Default | How to Change|
+| Setting | Default | What  |
 | --- |---  |--- |
 | | | |
 
 ###  <a name="color_settings"></a> Color Settings
-| Setting | Default | How to Change|
+For coloring purposes, boxed theorem environments are partitioned into three groups: plain, def(inition), and remark. The groups are as follows.
+
+* plain: theorembox, lemmabox, propbox (proposition)
+* def: corollarybox, conjecturebox, claimbox, defbox (definition)
+* remark: remarkbox
+
+These correspond to the three theoremstyles provided by the <code> amsthm </code> package. Colors can be set for each of these groups separately, as described below.
+| Setting | Default | What |
 | --- |---  |--- |
-| | | |
+| plaincolor | Periwinkle | The color of the plain group. Can be set to <code> COLOR </code> by adding <code> \setplaincolor{COLOR}</code> to the preamble. |
+| defcolor | Emerald | The color of the def group. Can be set to <code> COLOR </code> by adding <code> \setdefcolor{COLOR}</code> to the preamble.  |
+| remarkcolor | CornflowerBlue | The color of the remark group. Can be set to <code> COLOR </code> by adding <code> \setremarkcolor{COLOR}</code> to the preamble.  |
+| linkcolor | | TODO - hyperref stuff |
 
 ## <a name="examples"></a> Examples
 
@@ -91,7 +101,7 @@ This style file uses the following packages.
 | cleveref | Smarter theorem referencing (currently unused) |
 
 ## <a name="known_bugs"></a>Known Bugs:
-- Placing <code>\setdefcolor{Emerald}</code> (or any other color) immediately before <code>\begin{document}</code> results in an error. Placing it after <code>\begin{document}</code>, or placing another command, such as </code>\setpsetstyle{series}</code> between the two resolves this issue.
+- Placing <code>\setdefcolor{Emerald}</code> (or any other color) immediately before <code>\begin{document}</code> results in an error. Placing it after <code>\begin{document}</code>, or placing another command, such as <code>\setpsetstyle{series}</code> between the two resolves this issue.
 
 If you find another, please let me know!
 
