@@ -42,7 +42,7 @@ This style file uses the following packages
 | cleveref | Smarter theorem referencing (currently unused) |
 
 ## Known Bugs:
-- Placing '\setdefcolor{Emerald}' immediately before '\begin{document}' results in an error. Placing it after '\begin{document}', or placing another command, such as '\setpsetstyle{series}' between the two resolves this issue.
+- Placing <code>\setdefcolor{Emerald}</code> immediately before <code>\begin{document}</code> results in an error. Placing it after <code>\begin{document}</code>, or placing another command, such as </code>\setpsetstyle{series}</code> between the two resolves this issue.
 
 
 ## Far-future:
