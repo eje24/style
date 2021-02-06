@@ -1,5 +1,7 @@
 # style
-Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise).
+<p>Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
+
+<p> If you just want to make your pset look nice, skip to the [pset section](#psetting) for quick-setup instructions. </p>
 
 ## To-do:
 1. do numbered tcolorbox numbered environments :white_check_mark:
@@ -10,6 +12,7 @@ Temporary container for eje.sty. Many thanks to Jason Chen, from whose style fil
 6. get rid of extra ifs
 7. highlighting and hyperrefs
 8. error handling + checking that KOMA is properly loaded 
+
 
 ## Table of Contents
 1. [Package Options](#package_options)
@@ -39,18 +42,11 @@ Below is a list of currently supported options. For additional and option-specif
 ## <a name="additional_settings"></a> Additional Settings
 Additional settings can be specified in the preamble of your document. Some general ones are listed below.
 
-| Setting | Default | How to Change|
+| Setting | Default | What|
 | --- |---  |--- |
-| Name | Ben Bitdiddle | To set the name to <code>NAME</code>, add <code>\setname{NAME}</code> to the preamble of your document. |
+| Name | Ben Bitdiddle | Your name. To set the name to <code>NAME</code>, add <code>\setname{NAME}</code> to the preamble of your document. |
 | | | |
 
-###  <a name="pset_settings"></a> pset Settings
-There are two pset settings ... BLAH BLAH FILL THIS PART IN.
-
-| Setting | Default | What |
-| --- |---  |--- |
-| Class | 0.000 |  To set the name to <code>CLASS</code>, add <code>\setpsetclass{CLASS}</code> to the preamble of your document. |
-| Style | standalone | To set the style to <code>STYLE</code>, add <code>\setpsetstyle{STYLE}</code> to the preamble of your document. |
 
 ### <a name="header_settings"></a> Header Settings 
 | Setting | Default | What  |
@@ -72,7 +68,30 @@ These correspond to the three theoremstyles provided by the <code> amsthm </code
 | remarkcolor | CornflowerBlue | The color of the remark group. Can be set to <code> COLOR </code> by adding <code> \setremarkcolor{COLOR}</code> to the preamble.  |
 | linkcolor | | TODO - hyperref stuff |
 
+## <a name="psetting"></a> psetting: quick setup
+
+This section describes the basic setup for writing up a problem-set.
+
+###  <a name="pset_settings"></a> pset Settings
+There are two pset settings ... BLAH BLAH FILL THIS PART IN.
+
+| Setting | Default | What |
+| --- |---  |--- |
+| Class | 0.000 |  To set the name to <code>CLASS</code>, add <code>\setpsetclass{CLASS}</code> to the preamble of your document. |
+| Style | standalone | To set the style to <code>STYLE</code>, add <code>\setpsetstyle{STYLE}</code> to the preamble of your document. |
+
+## <a name="problem_settings"></a> Problems
+
+For an example, see the [pset example](#pset_example).
+
+
 ## <a name="examples"></a> Examples
+
+## <a name="pset_example"></a> pset Example
+
+## <a name="formal_example"></a> formal example
+
+## <a name="misc_example"></a> Miscellaneous Example
 
 
 ## <a name="packages"></a> Packages:
