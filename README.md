@@ -6,12 +6,15 @@
     - redefine section so it says "Problem X" instead of "1.1 Problem 1"
 * implement current problem + current pset with pset/problem counters
 * proof and solution environments
+* pset newpage settings
 * reset counters as appropriate when in certain pset mode
 * san serif (formal mode)
 * get rid of extra ifs
 * highlighting and hyperrefs
 * error handling + checking that KOMA is properly loaded 
 * footnotes
+* add arguments to boxes (<code>\begin{defbox}[myDefinition]</code>)
+* newpsetproblem spacing issues (before and after)
 
 
 
@@ -65,9 +68,9 @@ For coloring purposes, boxed theorem environments are partitioned into three gro
 These correspond to the three theoremstyles provided by the <code> amsthm </code> package. Colors can be set for each of these groups separately, as described below.
 | Setting | Default | What |
 | --- |---  |--- |
-| plaincolor | Periwinkle | The color of the plain group. Can be set to <code> COLOR </code> by adding <code> \setplaincolor{COLOR}</code> to the preamble. |
+| plaincolor | CornflowerBlue | The color of the plain group. Can be set to <code> COLOR </code> by adding <code> \setplaincolor{COLOR}</code> to the preamble. |
 | defcolor | Emerald | The color of the def group. Can be set to <code> COLOR </code> by adding <code> \setdefcolor{COLOR}</code> to the preamble.  |
-| remarkcolor | CornflowerBlue | The color of the remark group. Can be set to <code> COLOR </code> by adding <code> \setremarkcolor{COLOR}</code> to the preamble.  |
+| remarkcolor | Periwinkle | The color of the remark group. Can be set to <code> COLOR </code> by adding <code> \setremarkcolor{COLOR}</code> to the preamble.  |
 | linkcolor | | TODO - hyperref stuff |
 
 

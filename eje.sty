@@ -53,6 +53,8 @@
 %for both of following two commands:
 %do nothing if pset option not included in package options (this is to prevent an error being thrown if the user tries to do \psetseries or something without including pset in package options)
 %ASSUME USER WILL USE ONE OF \psetstandalone OR \psetseries
+\newcounter{currentproblem} %incremented when 
+\newcounter{currentpset}
 \newcommand{\psetstandalone}{
     \ifbool{eje@pset}{
         \booltrue{eje@pset@standalone}
@@ -66,6 +68,21 @@
         \ifbool{eje@header}{\setseriesheader}{}
         %TODO -- file in rest of series settings
     }
+}
+\RequirePackage{MnSymbol}
+\newcommand{\newpset}{
+    \newpage\stepcounter{currentpset}
+    \setcounter{currentproblem}{0}
+    \vspace*{1mm}
+    {\noindent\sffamily\Huge$\diamonddots ${\bfseries \, Problem Set \thecurrentpset}\newline}
+    \vspace{10mm}
+}
+\newcommand{\newpsetproblem}[1]{
+    %for standalone, each problem starts a new page
+    %for series, the first problem of each pset has its page started by \newpsetproblem
+    \ifbool{eje@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
+    \stepcounter{currentproblem}
+    {\noindent\sffamily\Large{\bfseries \S\thecurrentproblem.} \,\: #1 \newline}
 }
 \newcommand{\setpsetstyle}[1]{
     \IfEq{#1}{standalone}{
@@ -99,11 +116,11 @@
     \ifbool{eje@pset}{
         \newcommand{\setstandaloneheader}{
             \renewcommand{\sectionmark}[1]{\markright{##1}}
-            \setheaderstyle{\textnormal\name}{\textnormal current problem}{\textnormal\classname}{\pagemark}
+            \setheaderstyle{\textnormal\name}{\textnormal{Problem~\thecurrentproblem}}{\textnormal\classname}{\pagemark}
         }
         \newcommand{\setseriesheader}{
             \renewcommand{\subsectionmark}[1]{\markright{##1}}
-            \setheaderstyle{\textnormal\name}{\textnormal current pset}{\textnormal\classname}{\pagemark}
+            \setheaderstyle{\textnormal\name}{\textnormal{Problem Set~\thecurrentpset}}{\textnormal\classname}{\pagemark}
         }
         \ifbool{eje@pset@standalone}{
             %standalone pset
@@ -158,9 +175,9 @@
 
 
 
-\newcommand{\plaincolor}{Periwinkle}
+\newcommand{\plaincolor}{CornflowerBlue}
 \newcommand{\defcolor}{Emerald}
-\newcommand{\remarkcolor}{CornflowerBlue}
+\newcommand{\remarkcolor}{Periwinkle}
 \newcommand{\setplaincolor}[1]{
     \renewcommand{\plaincolor}{#1}
 }
@@ -355,7 +372,7 @@
 
 % Solution environment
 \newenvironment{testenv}{\noindent \textbf{BLAH}}{\hfill \ensuremath{\square}}
-\newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\ensuremath{\square}\ifeje@newpage\newpage\else\newline\fi}
+\newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\ensuremath{\square}\newline}
 \newenvironment{tproof}{\noindent \textbf{Proof: }}{\hfill \ensuremath{\blacksquare} \vspace{2mm}}
 % \newenvironment{tdef}{\newline\noindent \textbf{Definition: }}{\hfill\newline} ----- deprecated
 % \newenvironment{tlemma}{\newline\noindent \textbf{Lemma: }}{\hfill\newline} ------ deprecated
