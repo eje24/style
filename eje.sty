@@ -150,9 +150,12 @@
 \declaretheorem[style=remark, sibling=theorem]{remark}
 
 
+
 %tcolorbox must be loaded AFTER xcolor
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
 
 
 \newcommand{\plaincolor}{Periwinkle}
@@ -171,7 +174,7 @@
 %boxed plain style
 \declaretheoremstyle[
     spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries\color{\plaincolor},
+    headfont=\normalfont\bfseries\sffamily\color{\plaincolor},
     bodyfont=\itshape,
     postheadspace=1em,
 ]{boxedplainstyle}
@@ -179,7 +182,7 @@
 %boxed definition style
 \declaretheoremstyle[
     spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries\color{\defcolor},
+    headfont=\normalfont\bfseries\sffamily\color{\defcolor},
     bodyfont=\normalfont,
     postheadspace=1em,
 ]{boxeddefstyle}
@@ -187,7 +190,7 @@
 %boxed remark style
 \declaretheoremstyle[
     spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries\color{\remarkcolor},
+    headfont=\normalfont\bfseries\sffamily\color{\remarkcolor},
     bodyfont=\normalfont,
     postheadspace=1em,
 ]{boxedremarkstyle}
@@ -200,6 +203,13 @@
 \declaretheorem[style=boxeddefstyle,name=Claim, sibling=theorem]{boxedclaim}
 \declaretheorem[style=boxeddefstyle,name=Definition, sibling=theorem]{boxeddefinition}
 \declaretheorem[style=boxedremarkstyle,name=Remark, sibling=theorem]{boxedremark}
+
+\foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedremark}{
+    \AtBeginEnvironment{\env}{%
+        \setlist[enumerate]{font=\normalfont}
+  }
+}
+
 
 
 %%colorboxes
@@ -266,16 +276,23 @@
 
 
 %Typography
-\RequirePackage{lmodern}
-\usepackage{cmbright}
-\usefont{T1}{cmtl}{m}{n}
-\RequirePackage[defaultsans, scale=0.95]{lato}
-% \SetMathAlphabet{\mathrm}{normal}{\encodingdefault}{\rmdefault}{m}{n}%
-
+\ifbool{eje@causual}{
+    %casual sans-serif stuff
+    % \RequirePackage{lmodern}
+    \RequirePackage{cmbright}
+    % \usefont{T1}{cmtl}{m}{n}
+    \RequirePackage[defaultsans, scale=0.95]{lato}
+}{
+    \RequirePackage{lmodern}
+    \usefont{OT1}{lmr}{m}{n}
+}
 \SetMathAlphabet\mathrm{normal}{OT1}{\rmdefault}{m}{n}
-% \SetMathAlphabet\mathsf{bold}{OT1}{\sfdefault}{b}{n}
+\SetMathAlphabet\mathsf{bold}{OT1}{\sfdefault}{b}{n}
 \RequirePackage{microtype}
 \RequirePackage[nodisplayskipstretch, onehalfspacing]{setspace}
+% \SetMathAlphabet{\mathrm}{normal}{\encodingdefault}{\rmdefault}{m}{n}%
+
+
 
 % Page Margins
 \RequirePackage{geometry}
@@ -299,7 +316,6 @@
 \hypersetup{urlcolor=urlcolor, linkcolor=linkcolor, citecolor=citecolor}
 
 % cleveref must be loaded after hyperref
-% also is really picky and wants to be loaded after everything
 \RequirePackage[nameinlink]{cleveref}
 
 % SETUP
@@ -332,7 +348,7 @@
 \setlist{noitemsep, topsep=0.4em, listparindent=\parindent}
 
 % Make itemize bullets smaller
-\RenewDocumentCommand{\labelitemi}{}{$\vcenter{\hbox{\tiny\textbullet}}$}
+% \RenewDocumentCommand{\labelitemi}{}{$\vcenter{\hbox{\tiny\textbullet}}$}
 
 %Make enumerate use lowercase letters
 \renewcommand{\labelenumi}{\textbf{(\alph{enumi})}}
@@ -351,142 +367,9 @@
 \RenewDocumentCommand{\underbracket}{O{0.12ex} O{0.6ex} m}{\oldunderbracket[#1][#2]{#3}}
 
 
-\newcommand{\obold}[1]{{\bfseries\color{\eje@claimcolor}#1}}
+%todo: allow this color to be changed
+\newcommand{\obold}[1]{{\bfseries\color{BlueViolet}#1}}
 
-% %Claimbox - not numbered environment
-% \newenvironment{claimbox}{\begin{tcolorbox}[
-%     enhanced jigsaw,breakable,
-%     fonttitle=\ifeje@sf\sffamily\fi\bfseries,
-%     colback=\eje@claimcolor!5!white,
-%     colframe=\eje@claimcolor,
-%     sharp corners,
-%     boxrule=0mm,
-%     left=0.5mm,
-%     top=0.8mm,
-%     bottom=0.8mm,
-%     before skip=8pt plus 2pt,
-%     after skip=8pt plus 2pt
-%     ] \obold{Claim:}
-% }{\end{tcolorbox}}
-
-% \newenvironment{notebox}{\begin{tcolorbox}[
-%     enhanced jigsaw,breakable,
-%     fonttitle=\ifeje@sf\sffamily\fi\bfseries,
-%     colback=Violet!5!white,
-%     colframe=Violet,
-%     sharp corners,
-%     boxrule=0mm,
-%     left=0.5mm,
-%     top=0.8mm,
-%     bottom=0.8mm,
-%     before skip=8pt plus 2pt,
-%     after skip=8pt plus 2pt
-%     ] \obold{Note:}
-% }{\end{tcolorbox}}
-
-% \newenvironment{cbox}[2]{
-% \begin{tcolorbox}[
-%     enhanced jigsaw,breakable,
-%     fonttitle=\ifeje@sf\sffamily\fi\bfseries,
-%     colback=Violet!5!white,
-%     colframe=Violet,
-%     sharp corners,
-%     boxrule=0mm,
-%     left=0.5mm,
-%     top=0.8mm,
-%     bottom=0.8mm,
-%     before skip=8pt plus 2pt,
-%     after skip=8pt plus 2pt
-%     ] \obold{#1:}
-% }{\end{tcolorbox}}
-
-% \newenvironment{factbox}{\begin{tcolorbox}[
-%     enhanced jigsaw,breakable,
-%     fonttitle=\ifeje@sf\sffamily\fi\bfseries,
-%     colback=Violet!5!white,
-%     colframe=Violet,
-%     sharp corners,
-%     boxrule=0mm,
-%     left=0.5mm,
-%     top=0.8mm,
-%     bottom=0.8mm,
-%     before skip=8pt plus 2pt,
-%     after skip=8pt plus 2pt
-%     ] \obold{Fact:}
-% }{\end{tcolorbox}}
-
-
-% \newenvironment{problembox}[1]{\begin{tcolorbox}[
-%     enhanced jigsaw,breakable,
-%     fonttitle=\ifeje@sf\sffamily\fi\bfseries,
-%     colback=CadetBlue!15!white,
-%     colframe=CadetBlue,
-%     sharp corners,
-%     boxrule=0mm,
-%     leftrule=2pt,
-%     left=0.8mm,
-%     top=1.0mm,
-%     bottom=1.0mm,
-%     before skip=8pt plus 2pt,
-%     after skip=8pt plus 2pt
-%     ] \textcolor{CadetBlue}{\textbf{Problem\ #1:}}
-% }{\end{tcolorbox}}
-
-
-% Theorem boxes (Heavily copied from Daniel Zhu)
-\tcbuselibrary{skins, theorems, xparse, breakable}
-\tcbset{
-    ejebox/.style={
-        enhanced jigsaw,
-        breakable,
-        fonttitle=\ifeje@sf\sffamily\fi\bfseries,
-        sharp corners,
-        boxrule=1pt,
-        leftrule=1pt,
-        left=5pt,
-        coltitle=black,
-        detach title,
-    },
-    ejebluebox/.style={
-        ejebox,
-        coltitle=blue!80!black,
-        colframe=blue!80,
-        colback=blue!7,
-        detach title,
-    },
-    ejegreenbox/.style={
-        ejebox,
-        coltitle=green!40!black,
-        colframe=green!70!black,
-        colback=green!7,
-        detach title,
-    },
-    ejeorangebox/.style={
-        ejebox,
-        coltitle=orange!80!black,
-        colframe=orange!98!black,
-        colback=orange!8,
-        detach title,
-    },
-    ejeredbox/.style={
-        ejebox,
-        coltitle=red!60!black,
-        colframe=red!80!black,
-        colback=red!7,
-        detach title,
-    },
-    ejebluethm/.style={ejebluebox, ejethm},
-    ejegreenthm/.style={ejegreenbox, ejethm},
-    ejeorangethm/.style={ejeorangebox, ejethm},
-    ejeredthm/.style={ejeredbox, ejethm},
-    ejethm/.style={
-        theorem style=break,
-        separator sign none,
-        description delimiters parenthesis,
-        description font=\normalfont\ifeje@sf\sffamily\fi\small,
-        terminator sign none,
-    },
-}
 
 %from chez.sty 
 \newcommand*{\eje@drawmarginnumber}[1]{

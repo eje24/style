@@ -37,15 +37,23 @@
 \NewDocumentCommand{\cbrt}{m}{\sqrt[3]{#1}}
 
 % Sets - from chezbase.sty
-\NewDocumentCommand{\FF}{}{\mathbb F}
-\NewDocumentCommand{\NN}{}{\mathbb N}
-\NewDocumentCommand{\ZZ}{}{\mathbb Z}
-\NewDocumentCommand{\QQ}{}{\mathbb Q}
-\NewDocumentCommand{\RR}{}{\mathbb R}
-\NewDocumentCommand{\CC}{}{\mathbb C}
-\NewDocumentCommand{\HH}{}{\mathbb H}
-\NewDocumentCommand{\EE}{}{\mathbb E}
-\NewDocumentCommand{\PP}{}{\mathbb P}
+\NewDocumentCommand{\FF}{}{\ensuremath{\mathbb F}}
+\NewDocumentCommand{\NN}{}{\ensuremath{\mathbb N}}
+\NewDocumentCommand{\ZZ}{}{\ensuremath{\mathbb Z}}
+\NewDocumentCommand{\QQ}{}{\ensuremath{\mathbb Q}}
+\NewDocumentCommand{\RR}{}{\ensuremath{\mathbb R}}
+\NewDocumentCommand{\CC}{}{\ensuremath{\mathbb C}}
+\NewDocumentCommand{\HH}{}{\ensuremath{\mathbb H}}
+\NewDocumentCommand{\EE}{}{\ensuremath{\mathbb E}}
+\NewDocumentCommand{\PP}{}{\ensuremath{\mathbb P}}
+
+\NewDocumentCommand{\CCn}{}{\ensuremath{{\mathbb C}^n}}
+\NewDocumentCommand{\RRn}{}{\ensuremath{{\mathbb C}^n}}
+
+
+
+
+
 
 % General - from chezbase.sty
 \DeclareMathOperator*{\argmax}{argmax}

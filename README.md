@@ -2,14 +2,17 @@
 <p>Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
 
 ## To-do:
-1. do numbered tcolorbox numbered environments :white_check_mark:
-2. do regular numbered environments :white_check_mark:
-3. implement current problem + current pset with pset/problem counters
-4. reset counters as appropriate when in certain pset mode
-5. san serif (formal mode)
-6. get rid of extra ifs
-7. highlighting and hyperrefs
-8. error handling + checking that KOMA is properly loaded 
+* implement \newpset{name or number} and \newpsetproblem{name or number}
+    - redefine section so it says "Problem X" instead of "1.1 Problem 1"
+* implement current problem + current pset with pset/problem counters
+* proof and solution environments
+* reset counters as appropriate when in certain pset mode
+* san serif (formal mode)
+* get rid of extra ifs
+* highlighting and hyperrefs
+* error handling + checking that KOMA is properly loaded 
+* footnotes
+
 
 
 ## Table of Contents
