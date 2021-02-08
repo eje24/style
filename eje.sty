@@ -69,20 +69,20 @@
         %TODO -- file in rest of series settings
     }
 }
-\RequirePackage{MnSymbol}
+% \RequirePackage{MnSymbol} messes up other symbols :()
 \newcommand{\newpset}{
     \newpage\stepcounter{currentpset}
     \setcounter{currentproblem}{0}
-    \vspace*{1mm}
-    {\noindent\sffamily\Huge$\diamonddots ${\bfseries \, Problem Set \thecurrentpset}\newline}
-    \vspace{10mm}
+    \vspace*{5mm}
+    {\noindent\sffamily\bfseries\Huge$\spadesuit ${\, Problem Set \thecurrentpset}\newline}
+    \vspace{35mm}
 }
 \newcommand{\newpsetproblem}[1]{
     %for standalone, each problem starts a new page
     %for series, the first problem of each pset has its page started by \newpsetproblem
     \ifbool{eje@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
     \stepcounter{currentproblem}
-    {\noindent\sffamily\Large{\bfseries \S\thecurrentproblem.} \,\: #1 \newline}
+    {\noindent\bfseries\Large \S\thecurrentproblem. #1 \newline}
 }
 \newcommand{\setpsetstyle}[1]{
     \IfEq{#1}{standalone}{
@@ -164,6 +164,9 @@
 \declaretheorem[style=plain, sibling=theorem]{corollary}
 \declaretheorem[style=plain, sibling=theorem]{conjecture}
 \declaretheorem[style=definition, sibling=theorem]{definition}
+\declaretheorem[style=definition, sibling=theorem]{problem}
+\declaretheorem[style=definition, sibling=theorem]{example}
+\declaretheorem[style=definition, sibling=theorem]{question}
 \declaretheorem[style=remark, sibling=theorem]{remark}
 
 
@@ -219,9 +222,12 @@
 \declaretheorem[style=boxeddefstyle,name=Conjecture, sibling=theorem]{boxedconjecture}
 \declaretheorem[style=boxeddefstyle,name=Claim, sibling=theorem]{boxedclaim}
 \declaretheorem[style=boxeddefstyle,name=Definition, sibling=theorem]{boxeddefinition}
+\declaretheorem[style=boxeddefstyle,name=Problem, sibling=theorem]{boxedproblem}
+\declaretheorem[style=boxeddefstyle,name=Example, sibling=theorem]{boxedexample}
+\declaretheorem[style=boxeddefstyle,name=Question, sibling=theorem]{boxedquestion}
 \declaretheorem[style=boxedremarkstyle,name=Remark, sibling=theorem]{boxedremark}
 
-\foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedremark}{
+\foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedproblem,boxedexample,boxedquestion,boxedremark}{
     \AtBeginEnvironment{\env}{%
         \setlist[enumerate]{font=\normalfont}
   }
@@ -282,6 +288,9 @@
 \newenvironment{conjecturebox}{\begin{defframe}\begin{boxedconjecture}}{\end{boxedconjecture}\end{defframe}}
 \newenvironment{claimbox}{\begin{defframe}\begin{boxedclaim}}{\end{boxedclaim}\end{defframe}}
 \newenvironment{defbox}{\begin{defframe}\begin{boxeddefinition}}{\end{boxeddefinition}\end{defframe}}
+\newenvironment{problembox}{\begin{defframe}\begin{boxedproblem}}{\end{boxedproblem}\end{defframe}}
+\newenvironment{examplebox}{\begin{defframe}\begin{boxedexample}}{\end{boxedexample}\end{defframe}}
+\newenvironment{questionbox}{\begin{defframe}\begin{boxedquestion}}{\end{boxedquestion}\end{defframe}}
 \newenvironment{remarkbox}{\begin{remarkframe}\begin{boxedremark}}{\end{boxedremark}\end{remarkframe}}
 
 

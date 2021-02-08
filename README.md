@@ -2,18 +2,14 @@
 <p>Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
 
 ## To-do:
-* implement \newpset{name or number} and \newpsetproblem{name or number}
-    - redefine section so it says "Problem X" instead of "1.1 Problem 1"
-* implement current problem + current pset with pset/problem counters
 * proof and solution environments
 * pset newpage settings
-* reset counters as appropriate when in certain pset mode
-* san serif (formal mode)
+* heading font still a little wonky in formal mode (change to the same font as causual mode instead of just the latin modern sffamily)
 * get rid of extra ifs
 * highlighting and hyperrefs
 * error handling + checking that KOMA is properly loaded 
 * footnotes
-* add arguments to boxes (<code>\begin{defbox}[myDefinition]</code>)
+* add arguments to boxes (<code>\begin{defbox}[myDefinition name]</code>)
 * newpsetproblem spacing issues (before and after)
 
 
@@ -59,10 +55,10 @@ Additional settings can be specified in the preamble of your document. Some gene
 | | | |
 
 ###  <a name="color_settings"></a> Color Settings
-For coloring purposes, boxed theorem environments are partitioned into three groups: **plain**, **def(inition)**, and **remark**. The groups are as follows.
+For coloring purposes, boxed theorem environments are partitioned into three groups: **plain**, **def**(inition), and **remark**. The groups are as follows.
 
 * plain: <code>theorembox</code>, <code>lemmabox</code>, <code>propbox</code> (proposition)
-* def: <code>corollarybox</code>, <code>conjecturebox</code>, <code>claimbox</code>, <code>defbox</code> (definition)
+* def: <code>corollarybox</code>, <code>conjecturebox</code>, <code>claimbox</code>, <code>defbox</code> (definition), <code>problembox</code>, <code>questionbox</code>, <code>examplebox</code>
 * remark: <code>remarkbox</code>
 
 These correspond to the three theoremstyles provided by the <code> amsthm </code> package. Colors can be set for each of these groups separately, as described below.
