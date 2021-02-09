@@ -1,44 +1,36 @@
 \documentclass{scrartcl}
-\usepackage[pset, formal]{eje}
+\usepackage[formal]{eje}
+\usepackage{lipsum}
 
 
 \setname{Ben Bitdiddle}
-\setpsetclass{18.701}
-
-\setpsetstyle{Series Test}
 
 
-\title{Series Test}
+
+\title{\huge Series Test}
 \begin{document}
 
 
-
 \maketitle
-
 \begin{abstract}
-The text on this page is taken from \href{http://www-math.mit.edu/~poonen/715/real_representations.pdf}{this document}, for font testing purposes. The goal of these notes is to explain the classification of real representations of a finite
-group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
-\CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
-and representations are assumed to be finite-dimensional.
-
+    \lipsum[1]
 \end{abstract}
 
-\newpset
 
-\newpsetproblem{Constructions}
+\section{Heading on Level Zero}
 
-The goal of these notes is to explain the classification of real representations of a finite
+\rightmark The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
 \CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -47,27 +39,30 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
 \CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
 and representations are assumed to be finite-dimensional.
 
+\begin{example}
+    This is an example blah blah blah. 
+\end{example}
+
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -76,14 +71,13 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -91,12 +85,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -105,14 +99,13 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -120,12 +113,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -134,16 +127,13 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpset
-
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -151,12 +141,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -165,14 +155,13 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -180,12 +169,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -194,14 +183,13 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -209,12 +197,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -223,14 +211,15 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
+\section{Blah blah next section}
+
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -238,12 +227,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -252,16 +241,14 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpset
 
-\newpsetproblem{Constructions}
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -269,12 +256,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -283,14 +270,14 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
+
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -298,12 +285,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -312,14 +299,14 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
 
-\newpsetproblem{Constructions}
+
 
 The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
@@ -327,12 +314,12 @@ group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-mod
 and representations are assumed to be finite-dimensional.
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
-manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_\CC := W \otimes_\RR \CC$ is a \CC-vector
-space. We can view $W$ as an \RR-subspace of $W_\CC$ by identifying each $w \in W$ with $w \otimes 1 \in W_\CC$.
-Then an \RR-basis of $W$ is also a \CC-basis of $W_\CC$. In particular, $W_\CC$ has the same dimension as
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
 $W$ (but is a vector space over a different field).
 
-Conversely, we can view \CCn as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_\RR V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_\RR V$. In particular, $\dim(_\RR V) = 2\dim V$.
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
 
 Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
 
@@ -341,12 +328,102 @@ Complexification and restriction of scalars are not inverse constructions. Inste
     \hfill
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
-            (_\RR V)_\CC &\rightarrow V \oplus \ol{V} \\
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
             v\otimes c &\mapsto (cv,\ol{c}v) \\
         \end{align*} is an isomorphism of \CC-vector spaces.
-        \item If $W$ is an \RR-vector space, then \[_\RR(W_\CC) \simeq W\oplus W.\]
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
+
+\section{The third section}
+
+
+The goal of these notes is to explain the classification of real representations of a finite
+group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
+\CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
+and representations are assumed to be finite-dimensional.
+
+To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
+$W$ (but is a vector space over a different field).
+
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
+
+Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
+
+Complexification and restriction of scalars are not inverse constructions. Instead:
+\begin{proposition}[Complexification and restriction of scalars.]
+    \hfill
+    \begin{enumerate}[font=\normalfont]
+        \item If $V$ is a \CC-vector space, then the map \begin{align*}
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
+            v\otimes c &\mapsto (cv,\ol{c}v) \\
+        \end{align*} is an isomorphism of \CC-vector spaces.
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
+    \end{enumerate}
+\end{proposition}
+
+
+The goal of these notes is to explain the classification of real representations of a finite
+group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
+\CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
+and representations are assumed to be finite-dimensional.
+
+To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
+$W$ (but is a vector space over a different field).
+
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
+
+Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
+
+Complexification and restriction of scalars are not inverse constructions. Instead:
+\begin{proposition}[Complexification and restriction of scalars.]
+    \hfill
+    \begin{enumerate}[font=\normalfont]
+        \item If $V$ is a \CC-vector space, then the map \begin{align*}
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
+            v\otimes c &\mapsto (cv,\ol{c}v) \\
+        \end{align*} is an isomorphism of \CC-vector spaces.
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
+    \end{enumerate}
+\end{proposition}
+
+
+The goal of these notes is to explain the classification of real representations of a finite
+group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
+\CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
+and representations are assumed to be finite-dimensional.
+
+To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
+manner, if $W$ is an \RR-vector space, then its \obold{complexification} $W_{\CC} := W \otimes_{\RR} \CC$ is a \CC-vector
+space. We can view $W$ as an \RR-subspace of $W_{\CC}$ by identifying each $w \in W$ with $w \otimes 1 \in W_{\CC}$.
+Then an \RR-basis of $W$ is also a \CC-basis of $W_{\CC}$. In particular, $W_{\CC}$ has the same dimension as
+$W$ (but is a vector space over a different field).
+
+Conversely, we can view \CC[n] as $\RR^{2n}$ if we forget how to multiply by complex scalars that are not real. In a more coordinate-free manner, then its \obold{restriction of scalars} is the \RR-vector space $_{\RR} V$ with the same underlying abelian group but with only scalar multiplication by real numbers. If $v_1,\dots,v_n$ is a \CC-basis of $V$, then $v_1, iv_1,\dots,v_n,iv_n$ is an \RR-basis of $_{\RR} V$. In particular, $\dim(_{\RR} V) = 2\dim V$.
+
+Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector space} $\ol{V}$ has the same underlying group but a new scalar multiplication $\cdot$ defined by $\lambda\cdot v := \ol{\lambda}v$, where $\ol{\lambda}v$ is defined using the origial scalar multiplication.
+
+Complexification and restriction of scalars are not inverse constructions. Instead:
+\begin{proposition}[Complexification and restriction of scalars.]
+    \hfill
+    \begin{enumerate}[font=\normalfont]
+        \item If $V$ is a \CC-vector space, then the map \begin{align*}
+            (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
+            v\otimes c &\mapsto (cv,\ol{c}v) \\
+        \end{align*} is an isomorphism of \CC-vector spaces.
+        \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
+    \end{enumerate}
+\end{proposition}
+
+
+
+
 
 
 \end{document}

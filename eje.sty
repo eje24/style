@@ -1,7 +1,8 @@
 \ProvidesPackage{eje}
-\RequirePackage{ejemath} %math related macros
 \RequirePackage{xparse,xstring,etoolbox}
 \RequirePackage{kvoptions}
+\RequirePackage{mathtools,amssymb,amsthm} %for math symbols and macros
+% \RequirePackage{sectsty}
 %Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise)
 
 
@@ -27,6 +28,7 @@
 \DeclareStringOption[OrangeRed]{hlcolor} %can also be set with \sethighlightcolor
 
 \ProcessKeyvalOptions*
+
 
 
 %KOMA-related document options
@@ -71,18 +73,24 @@
 }
 % \RequirePackage{MnSymbol} messes up other symbols :()
 \newcommand{\newpset}{
-    \newpage\stepcounter{currentpset}
-    \setcounter{currentproblem}{0}
-    \vspace*{5mm}
-    {\noindent\sffamily\bfseries\Huge$\spadesuit ${\, Problem Set \thecurrentpset}\newline}
-    \vspace{35mm}
+    \ifbool{eje@pset@standalone}{}{
+        \newpage\stepcounter{currentpset}
+        \setcounter{currentproblem}{0}
+        \vspace*{5mm}
+        {\noindent\sffamily\bfseries\Huge$\spadesuit ${\, Problem Set \thecurrentpset}\newline}
+        \vspace{35mm}
+    }
 }
-\newcommand{\newpsetproblem}[1]{
+\NewDocumentCommand{\newpsetproblem}{s m}{
     %for standalone, each problem starts a new page
     %for series, the first problem of each pset has its page started by \newpsetproblem
     \ifbool{eje@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
     \stepcounter{currentproblem}
-    {\noindent\bfseries\Large \S\thecurrentproblem. #1 \newline}
+    \IfBooleanTF{#1}{
+        {\noindent\bfseries\Large #2 \newline}
+    }{
+        {\noindent\bfseries\Large \S\thecurrentproblem. #2 \newline}
+    }
 }
 \newcommand{\setpsetstyle}[1]{
     \IfEq{#1}{standalone}{
@@ -115,11 +123,9 @@
     }
     \ifbool{eje@pset}{
         \newcommand{\setstandaloneheader}{
-            \renewcommand{\sectionmark}[1]{\markright{##1}}
             \setheaderstyle{\textnormal\name}{\textnormal{Problem~\thecurrentproblem}}{\textnormal\classname}{\pagemark}
         }
         \newcommand{\setseriesheader}{
-            \renewcommand{\subsectionmark}[1]{\markright{##1}}
             \setheaderstyle{\textnormal\name}{\textnormal{Problem Set~\thecurrentpset}}{\textnormal\classname}{\pagemark}
         }
         \ifbool{eje@pset@standalone}{
@@ -131,12 +137,13 @@
         }
     }{
         %regular non-pset thing
-        \setheaderstyle{\textnormal\name}{}{\textnormal\thesection}{cat}
+        \renewcommand{\sectionmark}[1]{\markright{#1}}
+        \setheaderstyle{\textnormal\name}{}{\textnormal\rightmark}{\pagemark}
     }
 }{}
 
-\renewcommand{\thesection}{\S\arabic{section}}
-\renewcommand{\subsectionmark}[1]{\markright{#1}}
+% \renewcommand{\thesection}{\S\arabic{section}}
+% \renewcommand{\subsectionmark}[1]{\markright{#1}}
 
 
 %general series set methods
@@ -224,7 +231,7 @@
 \declaretheorem[style=boxeddefstyle,name=Definition, sibling=theorem]{boxeddefinition}
 \declaretheorem[style=boxeddefstyle,name=Problem, sibling=theorem]{boxedproblem}
 \declaretheorem[style=boxeddefstyle,name=Example, sibling=theorem]{boxedexample}
-\declaretheorem[style=boxeddefstyle,name=Question, sibling=theorem]{boxedquestion}
+\declaretheorem[style=boxeddefstyle,name=Question,sibling=theorem]{boxedquestion}
 \declaretheorem[style=boxedremarkstyle,name=Remark, sibling=theorem]{boxedremark}
 
 \foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedproblem,boxedexample,boxedquestion,boxedremark}{
@@ -311,11 +318,16 @@
 }{
     \RequirePackage{lmodern}
     \usefont{OT1}{lmr}{m}{n}
+    \setkomafont{section}{\Large\rmfamily\bfseries}
+    \addtokomafont{disposition}{\rmfamily}
+    % \allsectionsfont{\normalfont\bfseries}
+    % \RedeclareSectionCommand[\normalfont\bfseries]{section}
 }
 \SetMathAlphabet\mathrm{normal}{OT1}{\rmdefault}{m}{n}
 \SetMathAlphabet\mathsf{bold}{OT1}{\sfdefault}{b}{n}
 \RequirePackage{microtype}
 \RequirePackage[nodisplayskipstretch, onehalfspacing]{setspace}
+
 % \SetMathAlphabet{\mathrm}{normal}{\encodingdefault}{\rmdefault}{m}{n}%
 
 
@@ -430,9 +442,158 @@
 \NewDocumentEnvironment{proof*}{m}{\pushQED{\qed}\par\noindent\textit{#1}.}{\popQED\par\medskip}
 
 
-% TODO stuff
-% regular environments + colored environments
-% \newpset{name} (optional argument)
-% \newpsetproblem {conditionally does section or subsection}, argument is name of problem
-%
-%
+% Emphasizing
+% \definecolor{emphcolor}{rgb}{0, 0.4, 1}
+% \NewDocumentCommand{\vocab}{m}{\textbf{\textcolor{emphcolor}{#1}}}
+\NewDocumentCommand{\hl}{m}{\textbf{\textcolor{\eje@hlcolor}{#1}}}
+\NewDocumentCommand{\ol}{}{\overline}
+\NewDocumentCommand{\ul}{}{\underline}
+
+% Syntactically-named delimiters - from chezbase.sty
+\DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+\DeclarePairedDelimiter{\parens}{\lparen}{\rparen}
+\DeclarePairedDelimiter{\brackets}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\angles}{\langle}{\rangle}
+\DeclarePairedDelimiter{\verts}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\Verts}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+% Semantically-named delimiters - from chezbase.sty
+\NewDocumentCommand{\abs}{}{\verts}
+\NewDocumentCommand{\size}{}{\verts}
+\NewDocumentCommand{\norm}{}{\Verts}
+\NewDocumentCommand{\tuple}{}{\angles}
+\NewDocumentCommand{\gen}{}{\angles}
+
+% Symbols - from chezbase.sty
+\NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\nullset}{}{\varnothing}
+\NewDocumentCommand{\bigand}{}{\bigwedge}
+\NewDocumentCommand{\bigor}{}{\bigvee}
+
+% Common Math - from chezbase.sty
+\NewDocumentCommand{\half}{}{\frac{1}{2}}
+\NewDocumentCommand{\cbrt}{m}{\sqrt[3]{#1}}
+
+% Sets
+% Programmatically set mathbb macros - macro thanks to Phelype Oleinik and David Carlisle @Tex Stackexchange
+\ExplSyntaxOn
+\clist_map_inline:nn { F,N,Z,Q,R,C,H }
+  {
+    \exp_args:Nc \NewDocumentCommand { #1#1 } { o }
+      {\ensuremath{\mathbb{#1}\IfNoValueF{##1}{^{##1}}}}
+  }
+\ExplSyntaxOff
+
+% General - from chezbase.sty
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\RenewDocumentCommand{\Re}{}{\operatorname{Re}} % can't use DeclareMathOperator because already defined
+\RenewDocumentCommand{\Im}{}{\operatorname{Im}}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\sign}{sgn}
+
+% Combinatorics / Statistics
+\NewDocumentCommand{\EExp}{}{\operatorname{\mathbb E}}
+\NewDocumentCommand{\PProb}{}{\operatorname{\mathbb P}}
+\DeclareMathOperator{\Var}{Var}
+
+
+% Number Theory
+\RenewDocumentCommand{\mod}{m}{\ \mathrm{mod}\ #1}
+\DeclareMathOperator*{\lcm}{lcm}
+
+
+% Calculus -- from chez.sty
+\NewDocumentCommand{\dv}{s m m}{
+	\IfBooleanTF{#1}
+		{d#2/d#3}
+		{\frac{d #2}{d #3}}
+}
+\NewDocumentCommand{\dnv}{s m m m}{
+	\IfBooleanTF{#1}
+		{d^{#4}#2/d{#3}^{#4}}
+		{\frac{d^{#4} #2}{d {#3}^{#4}}}
+}
+\NewDocumentCommand{\ddv}{s m m}{
+	\IfBooleanTF{#1}
+		{\dnv*{#2}{#3}{2}}
+		{\dnv{#2}{#3}{2}}
+}
+\NewDocumentCommand{\pdv}{s m m}{
+	\IfBooleanTF{#1}
+		{\partial #2/\partial #3}
+		{\frac{\partial #2}{\partial #3}}
+}
+\NewDocumentCommand{\pdnv}{s m m m}{
+	\IfBooleanTF{#1}
+		{\partial^{#4}#2/\partial{#3}^{#4}}
+		{\frac{\partial^{#4} #2}{\partial {#3}^{#4}}}
+}
+\NewDocumentCommand{\pddv}{s m m}{
+	\IfBooleanTF{#1}
+		{\pdnv*{#2}{#3}{2}}
+		{\pdnv{#2}{#3}{2}}
+}
+
+
+\let\obelus\div
+\let\div\relax % was originally the division symbol
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\div}{div}
+\DeclareMathOperator{\curl}{curl}
+
+% Algebra
+\DeclareMathOperator{\ord}{ord}
+\NewDocumentCommand{\iso}{}{\DOTSB\cong}
+\NewDocumentCommand{\inv}{}{^{-1}}
+\NewDocumentCommand{\transp}{}{^{\mathsf T}}
+
+\DeclareMathOperator{\degree}{deg}
+
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Char}{char} % characteristic of a ring; \char already exists
+\DeclareMathOperator{\img}{im} % \ker is already defined
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+
+
+%Matrix Groups
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\SP}{SP}
+\DeclareMathOperator{\Orth}{O}
+
+%Lie Things
+\DeclareMathOperator{\gl}{\mathfrak{gl}}
+\DeclareMathOperator{\spl}{\mathfrak{sl}}
+\DeclareMathOperator{\so}{\mathfrak{so}}
+\DeclareMathOperator{\su}{\mathfrak{su}}
+\DeclareMathOperator{\spin}{\mathfrak{sp}}
+
+% Class specific beyond this point
+
+%Complexity - 18.404
+\DeclareMathOperator{\poly}{P}
+\DeclareMathOperator{\npoly}{NP}
+\DeclareMathOperator{\tsat}{3-SAT}
+
+%6.046
+\newcommand{\XX}{\textbf{X} }
+\newcommand{\YY}{\textbf{Y} }
+\newcommand{\NTS}{\textbf{NeedToSort}}
