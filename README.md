@@ -2,9 +2,6 @@
 <p>Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
 
 ## To-do:
-* proof and solution environments
-* pset newpage settings
-* heading font still a little wonky in formal mode (change to the same font as causual mode instead of just the latin modern sffamily)
 * get rid of extra ifs
 * highlighting and hyperrefs
 * error handling + checking that KOMA is properly loaded 
@@ -18,11 +15,10 @@
 1. [Package Options](#package_options)
 2. [Environments](#environments)
 3. [Additional Settings](#additional_settings)
-4. [Quick-Setup for psetting](#psetting)
-5. [Examples](#examples)
-6. [Packages](#packages)
-7. [Known Bugs](#known_bugs)
-8. [Future Features](#future_features)
+4. [Examples](#examples)
+5. [Packages](#packages)
+6. [Known Bugs](#known_bugs)
+7. [Future Features](#future_features)
 
 
 ## <a name="package_options"></a> Package Options
@@ -39,6 +35,53 @@ Below is a list of currently supported options. For additional and option-specif
 | monochrome | Emerald | TODO - A string option. Include  <code> monochrome=COLOR_NAME </code> to switch all tcolorboxes to <code> COLOR_NAME </code>. For a list of color options, see [here](https://en.wikibooks.org/wiki/LaTeX/Colors). |
 
 ## <a name="environments"></a> Environments
+
+This package provides numerous environments out of the box. They are described below.
+
+### Standard Environments
+The standard environments include `theorem`, `lemma`, `proposition`, `corollary`, `conjecture`, `definition`, `problem`, `example`, `question`, and `remark`.
+
+The following pictures illustrate what the environments look like in each of the two aesthetic modes.
+
+
+In formal mode:
+
+![standard-formal](images/standard-formal.png)
+
+In casual (not-formal) mode:
+
+![standard-causual](images/standard-causual.png)
+
+
+### Boxed environments
+The boxed environments include `theorembox`, `lemmabox`, `propbox`, `corollarybox`, `conjecturebox`, `claimbox`, `defbox`, `problembox`, `examplebox`, `questionbox`, and   `remarkbox`. For purely aesthetic purposes, they are **not** intended to be used in formal mode. The following picture illustrates the environments in causual mode.
+
+![boxed-causual](images/boxed-causual.png)
+
+Colors can be customized. For more details, see the [color settings](#color_settings) section.
+### Proof environments
+The proof environments include `proof`, `subproof`, `proof*`, and `subproof*`. Their features are described below.
+
+| Environment | Description |
+| --- | --- |
+| `proof` | Standard proof environment. Optional parameter for theorem name (`\begin{proof}[Test Proof]` would yield "*Proof (Test Proof).*"). Ends with `$\square$`.|
+| `subproof` | Same as `proof`, but ends with `$\blacksquare$`.|
+|`proof*` | Same as `proof`, but has mandatory parameter for theorem name (`\begin{proof*}{Test Proof}` would yield "*Test Proof.*") |
+| `subproof*` |Same as `proof*`, but ends with `$\blacksquare$`. |
+
+The following pictures illustrate what the proof environments look like in each of the two aesthetic modes.
+
+In formal mode:
+
+![proof-formal](images/proof-formal.png)
+
+In causual mode:
+
+![proof-causual](images/proof-causual.png)
+
+
+
+
 
 ## <a name="additional_settings"></a> Additional Settings
 Additional settings can be specified in the preamble of your document. Some general ones are listed below.
@@ -80,8 +123,10 @@ If you're typing up a single pset assignment... BLAH BLAH FILL THIS IN
 
 
 ## <a name="examples"></a> Examples
+This section contains several minimal examples. Pictures will be added eventually.
 
 ### <a name="pset_example"></a> pset Example
+
 
 ### <a name="formal_example"></a> formal example
 
@@ -119,5 +164,8 @@ This style file uses the following packages.
 If you find another, please let me know!
 
 ## <a name="future_features"></a> Future features:
+Below is a list of functionality that will eventually be implemented.
+- fix margin number to support pset headers
+- pset new page settings
 - add in algorithm support
 - add in minted support (for python and similar)

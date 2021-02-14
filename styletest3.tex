@@ -1,5 +1,5 @@
 \documentclass{scrartcl}
-\usepackage[pset]{eje}
+\usepackage[pset, marginnum]{eje}
 
 \setname{Ezra Erives}
 \setpsetclass{18.117}
@@ -15,6 +15,12 @@ Let's test out some of the new boxes.
 \begin{problembox}
         This is a test problem.
 \end{problembox}
+\begin{proof}
+        this is a test proof.
+\end{proof}
+\begin{proof*}{Proof}
+        this is a proof
+\end{proof*}
 
 
 \begin{questionbox}
@@ -38,19 +44,19 @@ Let's test out some of the new boxes.
         \begin{claimbox}
         If $v$ is an eigenvector of $A$ with eigenvalue $\lambda\in \CC$, then $v$ is an eigenvector of $e^A$ with eigenvalue $e^\lambda$.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         Suppose $v$ is an eigenvalue of $A$ with eigenvalue $\lambda$. Then 
         \[e^Av=\sum_{k=0}^{\infty}\frac{1}{k!}A^kv=\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}v=e^\lambda v\]
         Therefore, $v$ is an eigenvector of $e^A$
          with eigenvalue $e^\lambda$.
-         \end{tproof}
+         \end{subproof}
         
         \begin{claimbox}
         If $A$ is diagonalizable, then so is $e^A$.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         If $A$ is diagonalizable, then there exists some basis $\mathcal{B}$ of eigenvectors. By the first claim, the elements of $\mathcal{B}$ are eigenvectors of $e^A$ as well, and so $\mathcal{B}$ is a basis of eigenvectors of $e^A$ which is therefore diagonalizable.
-        \end{tproof}
+        \end{subproof}
         
         The opposite direction is slightly trickier - not every eigenvector of $e^A$ is an eigenvector of $A$. We show however, that these additional eigenvectors (should they exist) admit a simple description. 
         
@@ -58,7 +64,7 @@ Let's test out some of the new boxes.
         If $v$ is an eigenvector of $e^A$ with eigenvalue $\lambda$, then $v$ is a linear combination $v_1+\dots +v_k$ of eigenvectors of $A$, whose associated eigenvalues $\lambda_1\dots \lambda_k$ are distinct and satisfy $e^{\lambda_1}=\dots=e^{\lambda_k}=\lambda$.
         \end{claimbox}
             
-        \begin{tproof}
+        \begin{subproof}
         Without loss of generality, we may assume that $A$ is in Jordan canonical form. This is justified because the matrix exponential (as a linear map) is independent of basis (part (f) of the previous homework problem). Let $J_1,J_2,\dots, J_k$ be the Jordan blocks of $A$, corresponding to $A$-invariant subspaces $V_1,V_2,\dots, V_k$ of $V$. Then $e^A$ is block diagonal, with blocks given by the exponentials of the Jordan blocks. In particular, as $V$ is the direct sum of the $V_i$, any eigenvector $v$ of $e^A$ with eigenvalue $\lambda$ can be written as the sum $v_1+\dots + v_n$, where $v_i\in V_i$ is either zero, or an eigenvector of $e^A$ with eigenvalue $\lambda$. It is therefore sufficient to prove the claim when $A$ is replaced by the arbitrary Jordan block $J_i$, with eigenvalue $\lambda_i$.
         
         Write $J_i=\lambda_iI+N$, where $N$ consists of the off-diagonal entries of $J_i$ (i.e. the ones above the main diagonal). Then $\lambda_i I$ and $N$ commute, so by part (c) of the previous question $e^{J_i}=e^{\lambda_iI}e^N=(e^{\lambda_i}I)e^N$. Notice that $N$ is nilpotent, with $N^m=0$, where $m$ is the size of the matrix $J_i$. It follows that $e^N=\sum_{t=0}^\infty \tfrac{1}{t!}N^t=\sum_{t=0}^{m-1} \tfrac{1}{t!}N^t$. We see then that
@@ -71,7 +77,7 @@ Let's test out some of the new boxes.
         & & & & 1\\
         \end{bmatrix}.\]
         From this we see that the only eigenvalue of $e^{J_i}$ is $e^{\lambda_i}$, and that $\ker(e^{J_i}-e^{\lambda_i}I)$ is simply the span of the first basis vector (which can be verified by subtracting off $I$ and observing that every component except the first in the coordinate vector of a solution is forced to be zero). This first basis vector is none other than the eigenvector of $A$ with eigenvector $\lambda_i$ corresponding to the Jordan block $J_i$, and so we are done.
-        \end{tproof}
+        \end{subproof}
         
         For $\lambda\in \CC$, let $K_\lambda$ and $K_\lambda'$ denote the possible empty $\lambda$-eigenspaces of $A$ and $e^A$ respectively. It follows then from the first claim that 
         \[K_\lambda'\supseteq\bigoplus_{e^{\lambda'}=\lambda} K_{\lambda'}.\]
@@ -79,9 +85,9 @@ Let's test out some of the new boxes.
         \begin{claimbox}
         If $e^A$ is diagonalizable, then so is $A$, from which the next claim follows.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         If $e^A$ is diagonanizable, then \[\dim V=\sum_\lambda \dim K_\lambda'=\sum_\lambda \sum_{e^{\lambda'}=\lambda}\dim K_{\lambda'}=\sum_{\lambda}\dim K_\lambda\] and so $V$ is the direct sum of the non-empty $K_\lambda$'s, and we may combine bases for each such $K_\lambda$ to obtain a basis of eigenvectors of $V$. Thus, $A$ is diagonalizable, as desired.
-        \end{tproof}
+        \end{subproof}
         
         Both directions are proven, and so we are done.
         \end{solution}
@@ -94,28 +100,28 @@ Let's test out some of the new boxes.
         \begin{lemma}
         For $v\in \RR^2$, the conjugacy class of the translation $t_v$ is the set $C'(t_v)=\{t_{v'}\mid \abs{v'}=\abs{v}\}$.
         \end{lemma}
-        \begin{tproof}
+        \begin{subproof}
         Let $C'(t_v)=\{t_{v'}\mid \abs{v'}=\abs{v}\}$. We wish to show $C'(t_v)=C(t_v)$. Conjugation by any translation fixes $t_v$, while conjugation by some $m\in O_2$ sends $t_v$ to $t_u$ with $\abs{v}=\abs{u}$. In both cases, the image is in $C'(t_v)$, and so $C(t_v)\subseteq C'(t_v)$. Conversely, the elements of $C'(v)$ are translations by rotated versions of $v$, which are obtained by conjugating $t_v$ by the appropriate rotation. Thus, $C'(t_v)\subseteq C(t_v)$, and so $C(t_v)=C'(t_v)=\{t_{v'}\mid \abs{v'}=\abs{v}\}$.
-        \end{tproof}
+        \end{subproof}
     
         We now turn to \cbold{rotations}. That is, isometries $g$ for which the usual map $\phi: M_2 \to O_2$ carries $g$ to some rotation.
         \begin{lemma}
         For $v\in \RR^2$ and non-zero angle $\theta$, the conjugacy class of the rotation $t_v\rho_\theta$ is the set $\{t_u\rho_\gamma| u\in \RR^2, \gamma=\theta \text{ or } -\theta\}$.
         \end{lemma}
-        \begin{tproof} As before, let $C'(t_v\rho_\theta)=\{t_u\rho_\gamma| u\in \RR^2, \gamma=\theta \text{ or } -\theta\}$. Conjugating by the appropriate translation yields $t_v\rho_\theta\sim \rho_\theta$, and so $C(t_v\rho_\theta)=C(\rho_\theta)$. Observe that $\rho_\theta$ is fixed under conjugation by any other rotation $\rho_\gamma$, and that conjugating by $r$ yields $\rho_{-\theta}$. It follows that $C(\rho_\theta)\cap O_2=\{\rho_{\theta},\rho_{-\theta}\}$, with the union of the images of these two rotations under conjugation by all translations being the set $C'(t_v\rho_\theta)$. Thus, $C'(t_v\rho_\theta)\subseteq C(t_v\rho_\theta)$. Conversely, if $t_um\in C(t_v\rho_\theta)$, for $m\in O_2$, then $m\in \{\rho_{\theta},\rho_{-\theta}\}$, and so $C(t_v\rho_\theta)\subseteq C'(t_v\rho_\theta)$, from which equality follows.
-        \end{tproof}
+        \begin{subproof} As before, let $C'(t_v\rho_\theta)=\{t_u\rho_\gamma| u\in \RR^2, \gamma=\theta \text{ or } -\theta\}$. Conjugating by the appropriate translation yields $t_v\rho_\theta\sim \rho_\theta$, and so $C(t_v\rho_\theta)=C(\rho_\theta)$. Observe that $\rho_\theta$ is fixed under conjugation by any other rotation $\rho_\gamma$, and that conjugating by $r$ yields $\rho_{-\theta}$. It follows that $C(\rho_\theta)\cap O_2=\{\rho_{\theta},\rho_{-\theta}\}$, with the union of the images of these two rotations under conjugation by all translations being the set $C'(t_v\rho_\theta)$. Thus, $C'(t_v\rho_\theta)\subseteq C(t_v\rho_\theta)$. Conversely, if $t_um\in C(t_v\rho_\theta)$, for $m\in O_2$, then $m\in \{\rho_{\theta},\rho_{-\theta}\}$, and so $C(t_v\rho_\theta)\subseteq C'(t_v\rho_\theta)$, from which equality follows.
+        \end{subproof}
     
         Finally, we address \cbold{glide reflections}. Let the \textit{glide component} of a glide reflection be the projection of the translation vector onto the axis of reflection.
         \begin{lemma}
         For $v\in \RR^2$, and angle $\theta$, the conjugacy class of the glide reflection $t_v\rho_\theta r$ is the set of glide reflections with glide component of equal magnitude.
         \end{lemma}
         \textbf{Note:} This final case covers both glide reflections and regular reflections. Regular reflections are the special case when $v$ is parallel to the axis of reflection.
-        \begin{tproof}
+        \begin{subproof}
         Let $\ell$ be the axis of reflection of $t_v\rho_\theta r$. Write $v=u+w$, with $u\perp \ell$ and $w\parallel \ell$. Conjugation by any $m\in O_2$ sends $t_{u+w}\rho_\theta r$ to $t_{u'+w'}\rho_\theta r$, a glide reflection about the line $\ell'$, where $\abs{u'}=\abs{u}$, $\abs{w'}=\abs{w}$, $u'\perp \ell'$, and $w'\parallel \ell'$. Letting $v=u'+w'$ follows that
         \[\abs{\proj_\ell(v)}=\abs{u}=\abs{u'}=\abs{\proj_{\ell'}(v')}.\] Thus, conjugating by any such $m$ preserves the magnitude of the glide component. Furthermore, observe that $t_w$ commutes with $\rho_\theta r$, while $t_u\rho_\theta r=\rho_\theta rt_{-u}$. It follows that conjugating by $t_w$ fixes $t_v\rho_\theta r$ while conjugating by $t_u$ simply translates the axis of reflection in the direction parallel to $u$, in both cases preserving the glide component. As any $k\in \RR^2$ is a linear combination of $u$ and $w$, conjugating by any translation again preserves glide magnitude, and combining this with the result about $m\in O_2$, gives that conjugating by any isometry preserves glide magnitude. It follows that $C(t_v\rho_\theta r)$ contains only glide reflections of the same glide magnitude as $t_v\rho_\theta r$.
         
         Conversely, suppose that $g$ is some other glide reflection with the same glide magnitude, and with axis $\ell_g$. To finish, we must show that $g\in C(t_v\rho_\theta r)$. Take any isometry carrying the $\ell_g$ to $\ell$. Then conjugating $g$ by that isometry gives a glide reflection $g'\sim g$ about $\ell$ with the same magnitude. There are only two such glide reflections about $\ell$, both in $C(t_v\rho_\theta r)$. It follows that $g\sim g'\in C(t_v\rho_\theta r)$, and so $C(t_v\rho_\theta r)$ contains $g$, as desired.
-        \end{tproof}
+        \end{subproof}
     
         We collect our results below. Viewing the identity as the zero-translation, the conjugacy classes of $M$ are as follows:
         \begin{itemize}
@@ -133,19 +139,19 @@ Let's test out some of the new boxes.
         \begin{claimbox}
         If $v$ is an eigenvector of $A$ with eigenvalue $\lambda\in \CC$, then $v$ is an eigenvector of $e^A$ with eigenvalue $e^\lambda$.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         Suppose $v$ is an eigenvalue of $A$ with eigenvalue $\lambda$. Then 
         \[e^Av=\sum_{k=0}^{\infty}\frac{1}{k!}A^kv=\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}v=e^\lambda v\]
         Therefore, $v$ is an eigenvector of $e^A$
          with eigenvalue $e^\lambda$.
-         \end{tproof}
+         \end{subproof}
         
         \begin{claimbox}
         If $A$ is diagonalizable, then so is $e^A$.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         If $A$ is diagonalizable, then there exists some basis $\mathcal{B}$ of eigenvectors. By the first claim, the elements of $\mathcal{B}$ are eigenvectors of $e^A$ as well, and so $\mathcal{B}$ is a basis of eigenvectors of $e^A$ which is therefore diagonalizable.
-        \end{tproof}
+        \end{subproof}
         
         The opposite direction is slightly trickier - not every eigenvector of $e^A$ is an eigenvector of $A$. We show however, that these additional eigenvectors (should they exist) admit a simple description. 
         
@@ -153,7 +159,7 @@ Let's test out some of the new boxes.
         If $v$ is an eigenvector of $e^A$ with eigenvalue $\lambda$, then $v$ is a linear combination $v_1+\dots +v_k$ of eigenvectors of $A$, whose associated eigenvalues $\lambda_1\dots \lambda_k$ are distinct and satisfy $e^{\lambda_1}=\dots=e^{\lambda_k}=\lambda$.
         \end{claimbox}
             
-        \begin{tproof}
+        \begin{subproof}
         Without loss of generality, we may assume that $A$ is in Jordan canonical form. This is justified because the matrix exponential (as a linear map) is independent of basis (part (f) of the previous homework problem). Let $J_1,J_2,\dots, J_k$ be the Jordan blocks of $A$, corresponding to $A$-invariant subspaces $V_1,V_2,\dots, V_k$ of $V$. Then $e^A$ is block diagonal, with blocks given by the exponentials of the Jordan blocks. In particular, as $V$ is the direct sum of the $V_i$, any eigenvector $v$ of $e^A$ with eigenvalue $\lambda$ can be written as the sum $v_1+\dots + v_n$, where $v_i\in V_i$ is either zero, or an eigenvector of $e^A$ with eigenvalue $\lambda$. It is therefore sufficient to prove the claim when $A$ is replaced by the arbitrary Jordan block $J_i$, with eigenvalue $\lambda_i$.
         
         Write $J_i=\lambda_iI+N$, where $N$ consists of the off-diagonal entries of $J_i$ (i.e. the ones above the main diagonal). Then $\lambda_i I$ and $N$ commute, so by part (c) of the previous question $e^{J_i}=e^{\lambda_iI}e^N=(e^{\lambda_i}I)e^N$. Notice that $N$ is nilpotent, with $N^m=0$, where $m$ is the size of the matrix $J_i$. It follows that $e^N=\sum_{t=0}^\infty \tfrac{1}{t!}N^t=\sum_{t=0}^{m-1} \tfrac{1}{t!}N^t$. We see then that
@@ -166,7 +172,7 @@ Let's test out some of the new boxes.
         & & & & 1\\
         \end{bmatrix}.\]
         From this we see that the only eigenvalue of $e^{J_i}$ is $e^{\lambda_i}$, and that $\ker(e^{J_i}-e^{\lambda_i}I)$ is simply the span of the first basis vector (which can be verified by subtracting off $I$ and observing that every component except the first in the coordinate vector of a solution is forced to be zero). This first basis vector is none other than the eigenvector of $A$ with eigenvector $\lambda_i$ corresponding to the Jordan block $J_i$, and so we are done.
-        \end{tproof}
+        \end{subproof}
         
         For $\lambda\in \CC$, let $K_\lambda$ and $K_\lambda'$ denote the possible empty $\lambda$-eigenspaces of $A$ and $e^A$ respectively. It follows then from the first claim that 
         \[K_\lambda'\supseteq\bigoplus_{e^{\lambda'}=\lambda} K_{\lambda'}.\]
@@ -174,9 +180,9 @@ Let's test out some of the new boxes.
         \begin{claimbox}
         If $e^A$ is diagonalizable, then so is $A$, from which the next claim follows.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         If $e^A$ is diagonanizable, then \[\dim V=\sum_\lambda \dim K_\lambda'=\sum_\lambda \sum_{e^{\lambda'}=\lambda}\dim K_{\lambda'}=\sum_{\lambda}\dim K_\lambda\] and so $V$ is the direct sum of the non-empty $K_\lambda$'s, and we may combine bases for each such $K_\lambda$ to obtain a basis of eigenvectors of $V$. Thus, $A$ is diagonalizable, as desired.
-        \end{tproof}
+        \end{subproof}
         
         Both directions are proven, and so we are done.
         \end{solution}
@@ -220,28 +226,28 @@ Let's test out some of the new boxes.
         \begin{lemma}
         For $v\in \RR^2$, the conjugacy class of the translation $t_v$ is the set $C'(t_v)=\{t_{v'}\mid \abs{v'}=\abs{v}\}$.
         \end{lemma}
-        \begin{tproof}
+        \begin{subproof}
         Let $C'(t_v)=\{t_{v'}\mid \abs{v'}=\abs{v}\}$. We wish to show $C'(t_v)=C(t_v)$. Conjugation by any translation fixes $t_v$, while conjugation by some $m\in O_2$ sends $t_v$ to $t_u$ with $\abs{v}=\abs{u}$. In both cases, the image is in $C'(t_v)$, and so $C(t_v)\subseteq C'(t_v)$. Conversely, the elements of $C'(v)$ are translations by rotated versions of $v$, which are obtained by conjugating $t_v$ by the appropriate rotation. Thus, $C'(t_v)\subseteq C(t_v)$, and so $C(t_v)=C'(t_v)=\{t_{v'}\mid \abs{v'}=\abs{v}\}$.
-        \end{tproof}
+        \end{subproof}
     
         We now turn to \cbold{rotations}. That is, isometries $g$ for which the usual map $\phi: M_2 \to O_2$ carries $g$ to some rotation.
         \begin{lemma}
         For $v\in \RR^2$ and non-zero angle $\theta$, the conjugacy class of the rotation $t_v\rho_\theta$ is the set $\{t_u\rho_\gamma| u\in \RR^2, \gamma=\theta \text{ or } -\theta\}$.
         \end{lemma}
-        \begin{tproof} As before, let $C'(t_v\rho_\theta)=\{t_u\rho_\gamma| u\in \RR^2, \gamma=\theta \text{ or } -\theta\}$. Conjugating by the appropriate translation yields $t_v\rho_\theta\sim \rho_\theta$, and so $C(t_v\rho_\theta)=C(\rho_\theta)$. Observe that $\rho_\theta$ is fixed under conjugation by any other rotation $\rho_\gamma$, and that conjugating by $r$ yields $\rho_{-\theta}$. It follows that $C(\rho_\theta)\cap O_2=\{\rho_{\theta},\rho_{-\theta}\}$, with the union of the images of these two rotations under conjugation by all translations being the set $C'(t_v\rho_\theta)$. Thus, $C'(t_v\rho_\theta)\subseteq C(t_v\rho_\theta)$. Conversely, if $t_um\in C(t_v\rho_\theta)$, for $m\in O_2$, then $m\in \{\rho_{\theta},\rho_{-\theta}\}$, and so $C(t_v\rho_\theta)\subseteq C'(t_v\rho_\theta)$, from which equality follows.
-        \end{tproof}
+        \begin{subproof} As before, let $C'(t_v\rho_\theta)=\{t_u\rho_\gamma| u\in \RR^2, \gamma=\theta \text{ or } -\theta\}$. Conjugating by the appropriate translation yields $t_v\rho_\theta\sim \rho_\theta$, and so $C(t_v\rho_\theta)=C(\rho_\theta)$. Observe that $\rho_\theta$ is fixed under conjugation by any other rotation $\rho_\gamma$, and that conjugating by $r$ yields $\rho_{-\theta}$. It follows that $C(\rho_\theta)\cap O_2=\{\rho_{\theta},\rho_{-\theta}\}$, with the union of the images of these two rotations under conjugation by all translations being the set $C'(t_v\rho_\theta)$. Thus, $C'(t_v\rho_\theta)\subseteq C(t_v\rho_\theta)$. Conversely, if $t_um\in C(t_v\rho_\theta)$, for $m\in O_2$, then $m\in \{\rho_{\theta},\rho_{-\theta}\}$, and so $C(t_v\rho_\theta)\subseteq C'(t_v\rho_\theta)$, from which equality follows.
+        \end{subproof}
     
         Finally, we address \cbold{glide reflections}. Let the \textit{glide component} of a glide reflection be the projection of the translation vector onto the axis of reflection.
         \begin{lemma}
         For $v\in \RR^2$, and angle $\theta$, the conjugacy class of the glide reflection $t_v\rho_\theta r$ is the set of glide reflections with glide component of equal magnitude.
         \end{lemma}
         \textbf{Note:} This final case covers both glide reflections and regular reflections. Regular reflections are the special case when $v$ is parallel to the axis of reflection.
-        \begin{tproof}
+        \begin{subproof}
         Let $\ell$ be the axis of reflection of $t_v\rho_\theta r$. Write $v=u+w$, with $u\perp \ell$ and $w\parallel \ell$. Conjugation by any $m\in O_2$ sends $t_{u+w}\rho_\theta r$ to $t_{u'+w'}\rho_\theta r$, a glide reflection about the line $\ell'$, where $\abs{u'}=\abs{u}$, $\abs{w'}=\abs{w}$, $u'\perp \ell'$, and $w'\parallel \ell'$. Letting $v=u'+w'$ follows that
         \[\abs{\proj_\ell(v)}=\abs{u}=\abs{u'}=\abs{\proj_{\ell'}(v')}.\] Thus, conjugating by any such $m$ preserves the magnitude of the glide component. Furthermore, observe that $t_w$ commutes with $\rho_\theta r$, while $t_u\rho_\theta r=\rho_\theta rt_{-u}$. It follows that conjugating by $t_w$ fixes $t_v\rho_\theta r$ while conjugating by $t_u$ simply translates the axis of reflection in the direction parallel to $u$, in both cases preserving the glide component. As any $k\in \RR^2$ is a linear combination of $u$ and $w$, conjugating by any translation again preserves glide magnitude, and combining this with the result about $m\in O_2$, gives that conjugating by any isometry preserves glide magnitude. It follows that $C(t_v\rho_\theta r)$ contains only glide reflections of the same glide magnitude as $t_v\rho_\theta r$.
         
         Conversely, suppose that $g$ is some other glide reflection with the same glide magnitude, and with axis $\ell_g$. To finish, we must show that $g\in C(t_v\rho_\theta r)$. Take any isometry carrying the $\ell_g$ to $\ell$. Then conjugating $g$ by that isometry gives a glide reflection $g'\sim g$ about $\ell$ with the same magnitude. There are only two such glide reflections about $\ell$, both in $C(t_v\rho_\theta r)$. It follows that $g\sim g'\in C(t_v\rho_\theta r)$, and so $C(t_v\rho_\theta r)$ contains $g$, as desired.
-        \end{tproof}
+        \end{subproof}
     
         We collect our results below. Viewing the identity as the zero-translation, the conjugacy classes of $M$ are as follows:
         \begin{itemize}
@@ -289,19 +295,19 @@ Let's test out some of the new boxes.
         \begin{claimbox}
         If $v$ is an eigenvector of $A$ with eigenvalue $\lambda\in \CC$, then $v$ is an eigenvector of $e^A$ with eigenvalue $e^\lambda$.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         Suppose $v$ is an eigenvalue of $A$ with eigenvalue $\lambda$. Then 
         \[e^Av=\sum_{k=0}^{\infty}\frac{1}{k!}A^kv=\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}v=e^\lambda v\]
         Therefore, $v$ is an eigenvector of $e^A$
          with eigenvalue $e^\lambda$.
-         \end{tproof}
+         \end{subproof}
         
         \begin{claimbox}
         If $A$ is diagonalizable, then so is $e^A$.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         If $A$ is diagonalizable, then there exists some basis $\mathcal{B}$ of eigenvectors. By the first claim, the elements of $\mathcal{B}$ are eigenvectors of $e^A$ as well, and so $\mathcal{B}$ is a basis of eigenvectors of $e^A$ which is therefore diagonalizable.
-        \end{tproof}
+        \end{subproof}
         
         The opposite direction is slightly trickier - not every eigenvector of $e^A$ is an eigenvector of $A$. We show however, that these additional eigenvectors (should they exist) admit a simple description. 
         
@@ -309,7 +315,7 @@ Let's test out some of the new boxes.
         If $v$ is an eigenvector of $e^A$ with eigenvalue $\lambda$, then $v$ is a linear combination $v_1+\dots +v_k$ of eigenvectors of $A$, whose associated eigenvalues $\lambda_1\dots \lambda_k$ are distinct and satisfy $e^{\lambda_1}=\dots=e^{\lambda_k}=\lambda$.
         \end{claimbox}
             
-        \begin{tproof}
+        \begin{subproof}
         Without loss of generality, we may assume that $A$ is in Jordan canonical form. This is justified because the matrix exponential (as a linear map) is independent of basis (part (f) of the previous homework problem). Let $J_1,J_2,\dots, J_k$ be the Jordan blocks of $A$, corresponding to $A$-invariant subspaces $V_1,V_2,\dots, V_k$ of $V$. Then $e^A$ is block diagonal, with blocks given by the exponentials of the Jordan blocks. In particular, as $V$ is the direct sum of the $V_i$, any eigenvector $v$ of $e^A$ with eigenvalue $\lambda$ can be written as the sum $v_1+\dots + v_n$, where $v_i\in V_i$ is either zero, or an eigenvector of $e^A$ with eigenvalue $\lambda$. It is therefore sufficient to prove the claim when $A$ is replaced by the arbitrary Jordan block $J_i$, with eigenvalue $\lambda_i$.
         
         Write $J_i=\lambda_iI+N$, where $N$ consists of the off-diagonal entries of $J_i$ (i.e. the ones above the main diagonal). Then $\lambda_i I$ and $N$ commute, so by part (c) of the previous question $e^{J_i}=e^{\lambda_iI}e^N=(e^{\lambda_i}I)e^N$. Notice that $N$ is nilpotent, with $N^m=0$, where $m$ is the size of the matrix $J_i$. It follows that $e^N=\sum_{t=0}^\infty \tfrac{1}{t!}N^t=\sum_{t=0}^{m-1} \tfrac{1}{t!}N^t$. We see then that
@@ -322,7 +328,7 @@ Let's test out some of the new boxes.
         & & & & 1\\
         \end{bmatrix}.\]
         From this we see that the only eigenvalue of $e^{J_i}$ is $e^{\lambda_i}$, and that $\ker(e^{J_i}-e^{\lambda_i}I)$ is simply the span of the first basis vector (which can be verified by subtracting off $I$ and observing that every component except the first in the coordinate vector of a solution is forced to be zero). This first basis vector is none other than the eigenvector of $A$ with eigenvector $\lambda_i$ corresponding to the Jordan block $J_i$, and so we are done.
-        \end{tproof}
+        \end{subproof}
         
         For $\lambda\in \CC$, let $K_\lambda$ and $K_\lambda'$ denote the possible empty $\lambda$-eigenspaces of $A$ and $e^A$ respectively. It follows then from the first claim that 
         \[K_\lambda'\supseteq\bigoplus_{e^{\lambda'}=\lambda} K_{\lambda'}.\]
@@ -330,9 +336,9 @@ Let's test out some of the new boxes.
         \begin{claimbox}
         If $e^A$ is diagonalizable, then so is $A$, from which the next claim follows.
         \end{claimbox}
-        \begin{tproof}
+        \begin{subproof}
         If $e^A$ is diagonanizable, then \[\dim V=\sum_\lambda \dim K_\lambda'=\sum_\lambda \sum_{e^{\lambda'}=\lambda}\dim K_{\lambda'}=\sum_{\lambda}\dim K_\lambda\] and so $V$ is the direct sum of the non-empty $K_\lambda$'s, and we may combine bases for each such $K_\lambda$ to obtain a basis of eigenvectors of $V$. Thus, $A$ is diagonalizable, as desired.
-        \end{tproof}
+        \end{subproof}
         
         Both directions are proven, and so we are done.
         \end{solution}

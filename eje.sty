@@ -245,7 +245,6 @@
 %%colorboxes
 \newenvironment{plainframe}{\begin{tcolorbox}[
     enhanced jigsaw,breakable,
-    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
     colback=\plaincolor!5!white,
     colframe=\plaincolor,
     sharp corners,
@@ -260,7 +259,6 @@
 
 \newenvironment{defframe}{\begin{tcolorbox}[
     enhanced jigsaw,breakable,
-    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
     colback=\defcolor!5!white,
     colframe=\defcolor,
     sharp corners,
@@ -275,7 +273,7 @@
 
 \newenvironment{remarkframe}{\begin{tcolorbox}[
     enhanced jigsaw,breakable,
-    fonttitle=\ifeje@sf\sffamily\fi\bfseries,
+    % fonttitle=\sffamily\fi\bfseries,
     colback=\remarkcolor!5!white,
     colframe=\remarkcolor,
     sharp corners,
@@ -392,7 +390,8 @@
 \renewcommand{\labelenumi}{\textbf{(\alph{enumi})}}
 
 % Solution environment
-\newenvironment{testenv}{\noindent \textbf{BLAH}}{\hfill \ensuremath{\square}}
+
+%Deprecated environments
 \newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\ensuremath{\square}\newline}
 \newenvironment{tproof}{\noindent \textbf{Proof: }}{\hfill \ensuremath{\blacksquare} \vspace{2mm}}
 % \newenvironment{tdef}{\newline\noindent \textbf{Definition: }}{\hfill\newline} ----- deprecated
@@ -410,6 +409,7 @@
 
 
 %from chez.sty 
+%currently deactiveated until further notice
 \newcommand*{\eje@drawmarginnumber}[1]{
     \node[anchor=north east,
         inner sep=0pt,
@@ -438,9 +438,10 @@
 	% TODO: custom package options so that environment colors can be chosen at start for example [definition=Cerulean, problem=Fuchsia...]
 
 % Redefine to reduce surrounding spacing
-\RenewDocumentEnvironment{proof}{o}{\pushQED{\qed}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\popQED\par\medskip}
-\NewDocumentEnvironment{proof*}{m}{\pushQED{\qed}\par\noindent\textit{#1}.}{\popQED\par\medskip}
-
+\RenewDocumentEnvironment{proof}{o}{\pushQED{$\square$}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\hfill\popQED\par\medskip}
+\NewDocumentEnvironment{subproof}{o}{\pushQED{$\blacksquare$}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\hfill\popQED\par\medskip}
+\NewDocumentEnvironment{proof*}{m}{\pushQED{$\square$}\par\noindent\textit{#1}.}{\hfill\popQED\par\medskip}
+\NewDocumentEnvironment{subproof*}{m}{\pushQED{$\blacksquare$}\par\noindent\textit{#1}.}{\hfill\popQED\par\medskip}
 
 % Emphasizing
 % \definecolor{emphcolor}{rgb}{0, 0.4, 1}
