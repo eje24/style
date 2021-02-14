@@ -21,8 +21,8 @@ Below is a list of currently supported options. For additional and option-specif
 | Option | Default | Functionality |
 | --- | --- | --- |
 | pset | off | Include this option if you're writing a pset. Additional functionality is described below in [pset settings](#pset_settings).  |
-| formal | off | TODO |
-| nodate | off | TODO | 
+| formal | off | There are two asthetic modes - formal and causual. By default, the document is in causual mode. To switch to formal, include the formal option. |
+| nodate | off | Including this option removes the date from your preferences. | 
 | noheader | off | Include this option if you don't want a header. Additional header functionality is described below in [header settings](#header_settings). |
 | marginnum | off | Include this option to put section numbers in the margin. |
 | monochrome | Emerald | TODO - A string option. Include  <code> monochrome=COLOR_NAME </code> to switch all tcolorboxes to <code> COLOR_NAME </code>. For a list of color options, see [here](https://en.wikibooks.org/wiki/LaTeX/Colors). |
