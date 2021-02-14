@@ -1,4 +1,6 @@
 # style
+## 
+
 <p> Container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
 
 
