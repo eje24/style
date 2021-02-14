@@ -1,14 +1,5 @@
 # style
-<p>Temporary container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
-
-## To-do:
-* get rid of extra ifs
-* highlighting and hyperrefs
-* error handling + checking that KOMA is properly loaded 
-* footnotes
-* add arguments to boxes (<code>\begin{defbox}[myDefinition name]</code>)
-* newpsetproblem spacing issues (before and after)
-
+<p> Container for eje.sty. Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise). </p>
 
 
 ## Table of Contents
@@ -165,7 +156,11 @@ If you find another, please let me know!
 
 ## <a name="future_features"></a> Future features:
 Below is a list of functionality that will eventually be implemented.
+- error handling + checking that KOMA is properly loaded 
 - fix margin number to support pset headers
 - pset new page settings
 - add in algorithm support
 - add in minted support (for python and similar)
+- newpsetproblem spacing issues (before and after)
+- add arguments to boxes (<code>\begin{defbox}[myDefinition name]</code>)
+

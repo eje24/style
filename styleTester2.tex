@@ -21,11 +21,29 @@
 
 \rightmark The goal of these notes is to explain the classification of real representations of a finite
 group. Throughout, $G$ is a finite group, $W$ is a \RR-vector space or \RR G-module, and $V$ is a
-\CC-vector space or \CC G-module (except in Section 2, where $V$ is over any field). Vector spaces
-and representations are assumed to be finite-dimensional.
+\CC-vector space or \CC G-module (except in Section 2\footnote{this is a test footnote}, where $V$ is over any field). Vector spaces
+and representations are assumed to be finite-dimensional \footnote{this is another footnote}.
+
+
+This will be an empty chapter and I will put some text here
+
+\begin{equation}
+\sum_{i=0}^{\infty} a_i x^i
+\end{equation}
+
+The equation \ref{eq:1} shows a sum that is divergent. This formula 
+will later be used in the page \pageref{second}.
+
+For further references see \href{http://www.sharelatex.com}{Something 
+Linky} or go to the next url: \url{http://www.sharelatex.com} or open 
+the next file \href{run:./file.txt}{File.txt}
+
+It's also possible to link directly any word or 
+\hyperlink{thesentence}{any sentence} in your document.
+
 
 \begin{subproof*}{The Proof of The Cows}
-This is the proof of the cows.
+This is the proof of the cows. This is one test citation \cite{Lee}, and this is another \cite{Artin}
 \end{subproof*}
 
 To get from $\RR^n$ to $\CC^n$, we can tensor with \CC. In a more coordinate-free
@@ -157,6 +175,7 @@ Also, if $V$ is a \CC-vector space, then the \obold{complex conjugate vector spa
 Complexification and restriction of scalars are not inverse constructions. Instead:
 \begin{proposition}[Complexification and restriction of scalars.]
     \hfill
+    \label{eq:1}
     \begin{enumerate}[font=\normalfont]
         \item If $V$ is a \CC-vector space, then the map \begin{align*}
             (_{\RR} V)_{\CC} &\rightarrow V \oplus \ol{V} \\
@@ -424,6 +443,9 @@ Complexification and restriction of scalars are not inverse constructions. Inste
         \item If $W$ is an \RR-vector space, then \[_{\RR}(W_{\CC}) \simeq W\oplus W.\]
     \end{enumerate}
 \end{proposition}
+
+\bibliographystyle{unsrt}
+\bibliography{testbib}
 
 
 

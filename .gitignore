@@ -7,3 +7,5 @@
 *.synctex.gz
 *.pre
 *.loe
+*.bbl
+*.blg
