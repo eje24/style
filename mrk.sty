@@ -3,6 +3,7 @@
 \RequirePackage{kvoptions}
 \RequirePackage{mathtools,amssymb,amsthm} %for math symbols and macros
 \RequirePackage{euscript}
+\RequirePackage{bm} % for bold symbols
 % \RequirePackage{tikz-cd} %commutative diagrams
 
 % \RequirePackage{sectsty}
@@ -21,7 +22,7 @@
 \newbool{mrk@marginnum} \boolfalse{mrk@marginnum} %numbers in margins (for section, subsection, etc)
 \newbool{mrk@newpage} \booltrue{mrk@newpage} %new page after every problem (only applies to psets)
 \newbool{mrk@pset} \boolfalse{mrk@pset} %pset-mode
-\newbool{mrk@pset@standalone} \boolfalse{mrk@pset@standalone}
+\newbool{mrk@pset@standalone} \booltrue{mrk@pset@standalone}
 
 
 
@@ -393,12 +394,8 @@
 
 % Solution environment
 
-%Deprecated environments
+%Deprecated environments -- redundant with \proof* and \subproof*
 \newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\ensuremath{\square}\newline}
-\newenvironment{tproof}{\noindent \textbf{Proof: }}{\hfill \ensuremath{\blacksquare} \vspace{2mm}}
-% \newenvironment{tdef}{\newline\noindent \textbf{Definition: }}{\hfill\newline} ----- deprecated
-% \newenvironment{tlemma}{\newline\noindent \textbf{Lemma: }}{\hfill\newline} ------ deprecated
-
 
 
 % Better default bracket width/height

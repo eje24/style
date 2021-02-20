@@ -9,12 +9,12 @@
 
 %replace with new toggle notation ---- default settings
 \newbool{eje@date} \booltrue{eje@date} %whether or not date is displayed on front page
-\newbool{eje@causual} \booltrue{eje@causual} %casual boxy/sans-lerif style
+\newbool{eje@casual} \booltrue{eje@casual} %casual boxy/sans-lerif style
 \newbool{eje@header} \booltrue{eje@header} %presence of header (self-explanatory)
 \newbool{eje@marginnum} \boolfalse{eje@marginnum} %numbers in margins (for section, subsection, etc)
 \newbool{eje@newpage} \booltrue{eje@newpage} %new page after every problem (only applies to psets)
 \newbool{eje@pset} \boolfalse{eje@pset} %pset-mode
-\newbool{eje@pset@standalone} \boolfalse{eje@pset@standalone}
+\newbool{eje@pset@standalone} \booltrue{eje@pset@standalone}
 
 
 
@@ -22,7 +22,7 @@
 \DeclareVoidOption{noheader}{\boolfalse{eje@header}}
 \DeclareVoidOption{pset}{\booltrue{eje@pset}}
 \DeclareVoidOption{marginnum}{\booltrue{eje@marginnum}} %turns on margin numbers
-\DeclareVoidOption{formal}{\boolfalse{eje@causual}}
+\DeclareVoidOption{formal}{\boolfalse{eje@casual}}
 %\DeclareStringOption[default][optionName] --> creates string \eje@optionName
 \DeclareStringOption[Orange]{claimcolor}
 \DeclareStringOption[OrangeRed]{hlcolor} %can also be set with \sethighlightcolor
@@ -307,7 +307,7 @@
 
 
 %Typography
-\ifbool{eje@causual}{
+\ifbool{eje@casual}{
     %casual sans-serif stuff
     % \RequirePackage{lmodern}
     \RequirePackage{cmbright}
@@ -391,7 +391,7 @@
 
 % Solution environment
 
-%Deprecated environments
+%Deprecated environments -- only here so that old documents still compile
 \newenvironment{solution}{\noindent \textbf{Solution: }}{\hfill\ensuremath{\square}\newline}
 \newenvironment{tproof}{\noindent \textbf{Proof: }}{\hfill \ensuremath{\blacksquare} \vspace{2mm}}
 % \newenvironment{tdef}{\newline\noindent \textbf{Definition: }}{\hfill\newline} ----- deprecated
