@@ -153,11 +153,13 @@ This style file uses the following packages.
 
 ## <a name="known_bugs"></a>Known Bugs:
 - Placing <code>\setdefcolor{Emerald}</code> (or any other color) immediately before <code>\begin{document}</code> results in an error. Placing it after <code>\begin{document}</code>, or placing another command, such as <code>\setpsetstyle{series}</code> between the two resolves this issue.
+- Use <code>input{SUBFILE_NAME}</code> instead of <code>subfile{SUBFILE_NAME}</code>, as subfiles don't seem to be interfacing well with updating certain settings in the style file. Example bug: doing <code>\newpsetproblem{my problem name}</code> inside a subfile while using <code>\setliteralpsetheader</code> doesn't cause <code>\currentpsetproblemname</code> to update.
 
 If you find another, please let me know!
 
 ## <a name="future_features"></a> Future features:
 Below is a list of functionality that will eventually be implemented.
+- Add the ability to make center of header random command in latex
 - "Sources consulted" environment for psets
 - add in exercises
 - add in separate color group for problems and exercises

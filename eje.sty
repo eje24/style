@@ -81,12 +81,14 @@
         \vspace{35mm}
     }
 }
+\NewDocumentCommand{\currentproblemname}{}{}
 \NewDocumentCommand{\newpsetproblem}{s m}{
     %for standalone, each problem starts a new page
     %for series, the first problem of each pset has its page started by \newpsetproblem
     \ifbool{eje@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
     \stepcounter{currentproblem}
     \IfBooleanTF{#1}{
+        \RenewDocumentCommand{\currentproblemname}{}{#2}
         {\noindent\bfseries\Large #2 \newline}
     }{
         {\noindent\bfseries\Large \S\thecurrentproblem. #2 \newline}
@@ -99,6 +101,14 @@
     \IfEq{#1}{series}{
         \psetseries
     }{}
+}
+% refreshes header settings to display current problem name
+\newcommand{\setliteralpsetheader}{
+    \ifbool{eje@pset}{
+        \ifbool{eje@header}{
+            \setheaderstyle{\textnormal\name}{\textnormal{\currentproblemname}}{\textnormal\classname}{\pagemark}
+        }
+    }
 }
 \newcommand{\psetnonewpage}{
     \ifbool{eje@pset}{
@@ -122,10 +132,10 @@
         \cfoot{#4} %footer center
     }
     \ifbool{eje@pset}{
-        \newcommand{\setstandaloneheader}{
+        \NewDocumentCommand{\setstandaloneheader}{o}{
             \setheaderstyle{\textnormal\name}{\textnormal{Problem~\thecurrentproblem}}{\textnormal\classname}{\pagemark}
         }
-        \newcommand{\setseriesheader}{
+        \NewDocumentCommand{\setseriesheader}{o}{
             \setheaderstyle{\textnormal\name}{\textnormal{Problem Set~\thecurrentpset}}{\textnormal\classname}{\pagemark}
         }
         \ifbool{eje@pset@standalone}{
