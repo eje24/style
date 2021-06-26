@@ -1,0 +1,113 @@
+\documentclass{scrartcl}
+\usepackage{eje}
+
+\title{Basic Documentation}
+
+
+\begin{document}
+
+\maketitle
+
+This file contains basic documentation for most environments present in \verb#eje.sty#. For stuff on package options, headings, and more, feel free to ask me, or see \href{https://github.com/eje24/style}{here}. Feel free to fork into your own personal style file and make additional modifications as you see fit.
+
+\tableofcontents
+
+
+\section{Standard Environments}
+\begin{theorem}
+    This is a theorem!  To use me, type \verb#\begin{theorem} ... \end{theorem}#.
+\end{theorem}
+\begin{lemma}
+    This is a lemma!  To use me, type \verb#\begin{lemma} ... \end{lemma}#.
+\end{lemma}
+\begin{proposition}
+    This is a proposition! To use me, type \verb#\begin{proposition} ... \end{proposition}#.
+\end{proposition}
+\begin{corollary}
+    This is a corollary! To use me, type \verb#\begin{corollary} ... \end{corollary}#.
+\end{corollary}
+\begin{conjecture}
+    This is a conjecture! To use me, type \verb#\begin{conjecture} ... \end{conjecture}#.
+\end{conjecture}
+\begin{problem}
+    This is a problem! To use me, type \verb#\begin{problem} ... \end{problem}#.
+\end{problem}
+\begin{example}
+    This is a example! To use me, type \verb#\begin{example} ... \end{example}#.
+\end{example}
+\begin{question}
+    This is a question! To use me, type \verb#\begin{question} ... \end{question}#.
+\end{question}
+\begin{remark}
+    This is a remark! To use me, type \verb#\begin{remark} ... \end{remark}#.
+\end{remark}
+
+\newpage
+
+\section{Boxed Environments}
+% Boxed environments are partitioned into three categories. Boxed environments within a given category are all the same color. You can set this color to anything from the \href{https://en.wikibooks.org/wiki/LaTeX/Colors}{xcolor package} here. See below for default colors and directions for customizing colors.
+
+\subsection{Plain Category}
+Default color is \textbf{CornflowerBlue}. Color can be set with \verb#\setplaincolor{COLOR_NAME}#.
+
+\begin{theorembox}
+    This is a theorembox! To use me, type \verb#\begin{theorembox} ... \end{theorembox}#.
+\end{theorembox}
+\begin{lemmabox}
+    This is a lemmabox! To use me, type \verb#\begin{lemmabox} ... \end{lemmabox}#.
+\end{lemmabox}
+\begin{propbox}
+    This is a propbox! To use me, type \verb#\begin{propbox} ... \end{propbox}#.
+\end{propbox}
+
+\subsection{Def Category}
+
+Default color is \textbf{Emerald}. Color can be set with \verb#\setdefcolor{COLOR_NAME}#.
+
+\begin{corollarybox}
+    This is a corollarybox! To use me, type \verb#\begin{corollarybox} ... \end{corollarybox}#.
+\end{corollarybox}
+\begin{conjecturebox}
+    This is a conjecturebox! To use me, type \verb#\begin{conjecturebox} ... \end{conjecturebox}#.
+\end{conjecturebox}
+\begin{claimbox}
+    This is a claimbox! To use me, type \verb#\begin{claimbox} ... \end{claimbox}#.
+\end{claimbox}
+\begin{problembox}
+    This is a problembox!  To use me, type \verb#\begin{problembox} ... \end{problembox}#.
+\end{problembox}
+\begin{examplebox}
+    This is a examplebox!  To use me, type \verb#\begin{examplebox} ... \end{examplebox}#.
+\end{examplebox}
+\begin{questionbox}
+    This is a question!  To use me, type \verb#\begin{questionbox} ... \end{questionbox}#.
+\end{questionbox}
+
+\subsection{Remark Category}
+
+Default color is \textbf{Periwinkle}. Color can be set with \verb#\setremarkcolor{COLOR_NAME}#. 
+
+\begin{remarkbox}
+    This is a remarkbox!  To use me, type \verb#\begin{remarkbox} ... \end{remarkbox}#.
+\end{remarkbox}
+
+\newpage
+
+\section{Proof Environments}
+\begin{proof}
+    Test proof! To use me, type \verb#\begin{proof} ... \end{proof}#.
+\end{proof}
+\begin{subproof}
+    Test subproof! To use me, type \verb#\begin{subproof} ... \end{subproof}#.
+\end{subproof}
+\begin{proof*}{My Proof}
+    Test proof*! To use me, type \verb#\begin{proof*}{PROOF_NAME} ... \end{proof*}#.
+\end{proof*}
+\begin{subproof*}{My Subproof}
+    Test subproof*! To use me, type \verb#\begin{subproof*}{PROOF_NAME} ... \end{subproof*}#.
+\end{subproof*}
+
+
+
+
+\end{document}
