@@ -24,7 +24,6 @@
 \DeclareVoidOption{marginnum}{\booltrue{eje@marginnum}} %turns on margin numbers
 \DeclareVoidOption{formal}{\boolfalse{eje@casual}}
 %\DeclareStringOption[default][optionName] --> creates string \eje@optionName
-\DeclareStringOption[Orange]{claimcolor}
 \DeclareStringOption[OrangeRed]{hlcolor} %can also be set with \sethighlightcolor
 
 \ProcessKeyvalOptions*
@@ -156,11 +155,6 @@
 % \renewcommand{\subsectionmark}[1]{\markright{#1}}
 
 
-%general series set methods
-\newcommand{\setclaimcolor}[1]{
-    \renewcommand{\eje@claimcolor}{#1}
-}
-
 %highlighting 
 \newcommand{\cbold}[1]{{#1}}
 
@@ -198,6 +192,7 @@
 \newcommand{\plaincolor}{CornflowerBlue}
 \newcommand{\defcolor}{Emerald}
 \newcommand{\remarkcolor}{Periwinkle}
+\newcommand{\misccolor}{Fuchsia}
 \newcommand{\setplaincolor}[1]{
     \renewcommand{\plaincolor}{#1}
 }
@@ -206,6 +201,9 @@
 }
 \newcommand{\setremarkcolor}[1]{
     \renewcommand{\remarkcolor}{#1}
+}
+\newcommand{\setmisccolor}[1]{
+    \renewcommand{\misccolor}{#1}
 }
 
 %boxed plain style
@@ -250,8 +248,6 @@
   }
 }
 
-
-
 %%colorboxes
 \newenvironment{plainframe}{\begin{tcolorbox}[
     enhanced jigsaw,breakable,
@@ -295,6 +291,21 @@
     after skip=8pt plus 2pt
     ]
 }{\end{tcolorbox}}
+
+\NewDocumentEnvironment{miscbox}{o}{\begin{tcolorbox}[
+    enhanced jigsaw,breakable,
+    % fonttitle=\sffamily\fi\bfseries,
+    colback=\IfNoValueTF{#1}{\misccolor}{#1}!5!white,
+    colframe=\misccolor,
+    sharp corners,
+    boxrule=0mm,
+    left=0.5mm,
+    top=0.8mm,
+    bottom=0.8mm,
+    before skip=8pt plus 2pt,
+    after skip=8pt plus 2pt
+    ]
+}{\end{tcolorbox}\medskip}
 
 \newenvironment{theorembox}{\begin{plainframe}\begin{boxedtheorem}}{\end{boxedtheorem}\end{plainframe}}
 \newenvironment{lemmabox}{\begin{plainframe}\begin{boxedlemma}}{\end{boxedlemma}\end{plainframe}}
