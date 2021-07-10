@@ -81,7 +81,8 @@
     }
 }
 \NewDocumentCommand{\currentproblemname}{}{}
-\NewDocumentCommand{\newpsetproblem}{s m}{
+\NewDocumentCommand{\currentproblemheader}{}{}
+\NewDocumentCommand{\newpsetproblem}{s m o}{
     %for standalone, each problem starts a new page
     %for series, the first problem of each pset has its page started by \newpsetproblem
     \ifbool{eje@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
@@ -91,6 +92,11 @@
         {\noindent\bfseries\Large #2 \newline}
     }{
         {\noindent\bfseries\Large \S\thecurrentproblem. #2 \newline}
+    }
+    \IfNoValueTF{#3}{
+        \RenewDocumentCommand{\currentproblemheader}{}{Problem~\thecurrentproblem}
+    }{
+        \RenewDocumentCommand{\currentproblemheader}{}{#3}
     }
 }
 \newcommand{\setpsetstyle}[1]{
@@ -132,7 +138,7 @@
     }
     \ifbool{eje@pset}{
         \NewDocumentCommand{\setstandaloneheader}{o}{
-            \setheaderstyle{\textnormal\name}{\textnormal{Problem~\thecurrentproblem}}{\textnormal\classname}{\pagemark}
+            \setheaderstyle{\textnormal\name}{\textnormal{\currentproblemheader}}{\textnormal\classname}{\pagemark}
         }
         \NewDocumentCommand{\setseriesheader}{o}{
             \setheaderstyle{\textnormal\name}{\textnormal{Problem Set~\thecurrentpset}}{\textnormal\classname}{\pagemark}
