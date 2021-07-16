@@ -1,4 +1,4 @@
-\ProvidesPackage{eje}
+\ProvidesPackage{pset}
 \RequirePackage{xparse,xstring,etoolbox}
 \RequirePackage{kvoptions}
 \RequirePackage{mathtools,amssymb,amsthm} %for math symbols and macros
@@ -8,22 +8,20 @@
 
 
 %replace with new toggle notation ---- default settings
-\newbool{eje@date} \booltrue{eje@date} %whether or not date is displayed on front page
-\newbool{eje@casual} \booltrue{eje@casual} %casual boxy/sans-lerif style
-\newbool{eje@header} \booltrue{eje@header} %presence of header (self-explanatory)
-\newbool{eje@marginnum} \boolfalse{eje@marginnum} %numbers in margins (for section, subsection, etc)
-\newbool{eje@newpage} \booltrue{eje@newpage} %new page after every problem (only applies to psets)
-\newbool{eje@pset} \boolfalse{eje@pset} %pset-mode
-\newbool{eje@pset@standalone} \booltrue{eje@pset@standalone}
+\newbool{pset@date} \booltrue{pset@date} %whether or not date is displayed on front page
+\newbool{pset@casual} \booltrue{pset@casual} %casual boxy/sans-lerif style
+\newbool{pset@header} \booltrue{pset@header} %presence of header (self-explanatory)
+\newbool{pset@newpage} \booltrue{pset@newpage} %new page after every problem (only applies to psets)
+\newbool{pset@pset} \boolfalse{pset@pset} %pset-mode
+\newbool{pset@pset@standalone} \booltrue{pset@pset@standalone}
 
 
 
-\DeclareVoidOption{nodate}{\boolfalse{eje@date}}
-\DeclareVoidOption{noheader}{\boolfalse{eje@header}}
-\DeclareVoidOption{pset}{\booltrue{eje@pset}}
-\DeclareVoidOption{marginnum}{\booltrue{eje@marginnum}} %turns on margin numbers
-\DeclareVoidOption{formal}{\boolfalse{eje@casual}}
-%\DeclareStringOption[default][optionName] --> creates string \eje@optionName
+\DeclareVoidOption{nodate}{\boolfalse{pset@date}}
+\DeclareVoidOption{noheader}{\boolfalse{pset@header}}
+\DeclareVoidOption{pset}{\booltrue{pset@pset}}
+\DeclareVoidOption{formal}{\boolfalse{pset@casual}}
+%\DeclareStringOption[default][optionName] --> creates string \pset@optionName
 \DeclareStringOption[OrangeRed]{hlcolor} %can also be set with \sethighlightcolor
 
 \ProcessKeyvalOptions*
@@ -57,22 +55,22 @@
 \newcounter{currentproblem} %incremented when 
 \newcounter{currentpset}
 \newcommand{\psetstandalone}{
-    \ifbool{eje@pset}{
-        \booltrue{eje@pset@standalone}
-        \ifbool{eje@header}{\setstandaloneheader}{}
+    \ifbool{pset@pset}{
+        \booltrue{pset@pset@standalone}
+        \ifbool{pset@header}{\setstandaloneheader}{}
         %TODO -- fill in rest of stand-alone settings
     }{}
 }
 \newcommand{\psetseries}{
-    \ifbool{eje@pset}{
-        \boolfalse{eje@pset@standalone}
-        \ifbool{eje@header}{\setseriesheader}{}
+    \ifbool{pset@pset}{
+        \boolfalse{pset@pset@standalone}
+        \ifbool{pset@header}{\setseriesheader}{}
         %TODO -- file in rest of series settings
     }
 }
 % \RequirePackage{MnSymbol} messes up other symbols :()
 \newcommand{\newpset}{
-    \ifbool{eje@pset@standalone}{}{
+    \ifbool{pset@pset@standalone}{}{
         \newpage\stepcounter{currentpset}
         \setcounter{currentproblem}{0}
         \vspace*{5mm}
@@ -85,7 +83,7 @@
 \NewDocumentCommand{\newpsetproblem}{s m o}{
     %for standalone, each problem starts a new page
     %for series, the first problem of each pset has its page started by \newpsetproblem
-    \ifbool{eje@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
+    \ifbool{pset@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
     \stepcounter{currentproblem}
     \IfBooleanTF{#1}{
         \RenewDocumentCommand{\currentproblemname}{}{#2}
@@ -109,14 +107,14 @@
 }
 % refreshes header settings to display current problem name
 \newcommand{\setliteralpsetheader}{
-    \ifbool{eje@pset}{
-        \ifbool{eje@header}{
+    \ifbool{pset@pset}{
+        \ifbool{pset@header}{
             \setheaderstyle{\textnormal\name}{\textnormal{\currentproblemname}}{\textnormal\classname}{\pagemark}
         }
     }
 }
 \newcommand{\psetnonewpage}{
-    \ifbool{eje@pset}{
+    \ifbool{pset@pset}{
         %renew solution command so that it doesn't do a new page after each  thing
     }{}
 }
@@ -127,7 +125,7 @@
 
 
 %header stuff
-\ifbool{eje@header}{
+\ifbool{pset@header}{
     \usepackage[headsepline]{scrlayer-scrpage} %KOMA header control
     \newcommand{\setheaderstyle}[4]{
         \clearpairofpagestyles
@@ -136,14 +134,14 @@
         \ohead{#3} %header right
         \cfoot{#4} %footer center
     }
-    \ifbool{eje@pset}{
+    \ifbool{pset@pset}{
         \NewDocumentCommand{\setstandaloneheader}{o}{
             \setheaderstyle{\textnormal\name}{\textnormal{\currentproblemheader}}{\textnormal\classname}{\pagemark}
         }
         \NewDocumentCommand{\setseriesheader}{o}{
             \setheaderstyle{\textnormal\name}{\textnormal{Problem Set~\thecurrentpset}}{\textnormal\classname}{\pagemark}
         }
-        \ifbool{eje@pset@standalone}{
+        \ifbool{pset@pset@standalone}{
             %standalone pset
             \setstandaloneheader
         }{
@@ -334,7 +332,7 @@
 
 
 %Typography
-\ifbool{eje@casual}{
+\ifbool{pset@casual}{
     %casual sans-serif stuff
     % \RequirePackage{lmodern}
     \RequirePackage{cmbright}
@@ -360,7 +358,7 @@
 % Page Margins
 \RequirePackage{geometry}
 \geometry{margin=2.0cm, includefoot}
-\ifeje@header\geometry{includehead}\fi
+\ifpset@header\geometry{includehead}\fi
 
 
 % Diagrams
@@ -371,7 +369,7 @@
 \RequirePackage[shortlabels, inline]{enumitem}
 
 % References
-\PassOptionsToPackage{pdftex, pdfcreator={LaTeX with eje.sty by Ezra Erives}}{hyperref}
+\PassOptionsToPackage{pdftex, pdfcreator={LaTeX with pset.sty by Ezra Erives}}{hyperref}
 \RequirePackage[colorlinks]{hyperref} % load this last generally
 \definecolor{urlcolor}{rgb}{0.9, 0, 0.5}
 \definecolor{linkcolor}{rgb}{0, 0.2, 0.8}
@@ -384,20 +382,15 @@
 % SETUP
 \author{\name}
 
-\ifeje@date\else\date{~\vspace{-3em}}\fi
+\ifpset@date\else\date{~\vspace{-3em}}\fi
 
 % Stylize things
 % \patchcmd{\@maketitle}{\huge}{\large}{}{}
 \setkomafont{author}{\normalsize\scshape}
 \setkomafont{date}{\normalsize}
 % \setkomafont{disposition}{\normalcolor\bfseries}
-% \ifeje@header\setkomafont{pageheadfoot}{\normalcolor}
+% \ifpset@header\setkomafont{pageheadfoot}{\normalcolor}
 \RedeclareSectionCommand[beforeskip=0.4\baselineskip]{paragraph}
-
-% Section numbers in the margin
-\ifbool{eje@marginnum}{
-    \RenewDocumentCommand{\sectionlinesformat}{m m m m}{\makebox[0pt][r]{#3}#4}
-}{}
 
 \allowdisplaybreaks
 \AtBeginDocument{
@@ -434,35 +427,8 @@
 %todo: allow this color to be changed
 \newcommand{\obold}[1]{{\bfseries\color{BlueViolet}#1}}
 
-
-%from chez.sty 
-%currently deactiveated until further notice
-\newcommand*{\eje@drawmarginnumber}[1]{
-    \node[anchor=north east,
-        inner sep=0pt,
-        xshift=-0.8em,
-        yshift=-1.865ex,
-        font=\ifeje@sf\sffamily\fi\bfseries\color{tcbcoltitle}\mathstrut\small]
-        at (frame.north west) {#1};
-}
-\tcbset{
-    ejethmmargin/.style={
-        enhanced jigsaw,
-        theorem name,
-        extras unbroken and first={
-            overlay={
-                \ifdef{\thetcbthmcounter}{
-                    \eje@drawmarginnumber{\thetcbthmcounter}
-                }{
-                    \ifdef{\thetcbcounter}{\eje@drawmarginnumber{\thetcbcounter}}
-                }
-            },
-        },
-    },
-    ejethm/.append style=ejethmmargin,
-}
-	% TODO: footnotes
-	% TODO: custom package options so that environment colors can be chosen at start for example [definition=Cerulean, problem=Fuchsia...]
+% TODO: footnotes
+% TODO: custom package options so that environment colors can be chosen at start for example [definition=Cerulean, problem=Fuchsia...]
 
 % Redefine to reduce surrounding spacing
 \RenewDocumentEnvironment{proof}{o}{\pushQED{$\square$}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\hfill\popQED\par\medskip}
@@ -473,7 +439,7 @@
 % Emphasizing
 % \definecolor{emphcolor}{rgb}{0, 0.4, 1}
 % \NewDocumentCommand{\vocab}{m}{\textbf{\textcolor{emphcolor}{#1}}}
-\NewDocumentCommand{\hl}{m}{\textbf{\textcolor{\eje@hlcolor}{#1}}}
+\NewDocumentCommand{\hl}{m}{\textbf{\textcolor{\pset@hlcolor}{#1}}}
 \NewDocumentCommand{\ol}{}{\overline}
 \NewDocumentCommand{\ul}{}{\underline}
 
