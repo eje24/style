@@ -3,16 +3,11 @@
 \RequirePackage{kvoptions}
 \RequirePackage{mathtools,amssymb,amsthm} %for math symbols and macros
 \RequirePackage{euscript}
-\RequirePackage{bm} % for bold symbols
+% \RequirePackage{minted}
 % \RequirePackage{tikz-cd} %commutative diagrams
 
 % \RequirePackage{sectsty}
 %Many thanks to Jason Chen, from whose style file this one drew significant inspiration (structurally and otherwise)
-
-
-%to do
-% set defaults
-% add macros and stuff
 
 
 %replace with new toggle notation ---- default settings
@@ -23,8 +18,6 @@
 \newbool{mrk@newpage} \booltrue{mrk@newpage} %new page after every problem (only applies to psets)
 \newbool{mrk@pset} \boolfalse{mrk@pset} %pset-mode
 \newbool{mrk@pset@standalone} \booltrue{mrk@pset@standalone}
-
-
 
 \DeclareVoidOption{nodate}{\boolfalse{mrk@date}}
 \DeclareVoidOption{noheader}{\boolfalse{mrk@header}}
@@ -38,14 +31,6 @@
 \ProcessKeyvalOptions*
 
 
-
-%KOMA-related document options
-\KOMAoptions{
-	paper=letter,
-	fontsize=10pt,
-	usegeometry,
-	numbers=noendperiod,
-}
 
 
 %name stuff
@@ -86,8 +71,8 @@
 }
 \NewDocumentCommand{\newpsetproblem}{s m}{
     %for standalone, each problem starts a new page
-    %for series, the first problem of each pset has its page started by \newpsetproblem
-    \ifbool{mrk@pset@standalone}{\newpage}{\ifnum\thecurrentproblem>0\newpage\fi}
+    %for series, no new page separation
+    \ifbool{mrk@pset@standalone}{\newpage}{\vspace{10mm}}
     \stepcounter{currentproblem}
     \IfBooleanTF{#1}{
         {\noindent\bfseries\Large #2 \newline}
@@ -181,149 +166,22 @@
 
 
 
-%tcolorbox must be loaded AFTER xcolor
+%tcolormust be loaded AFTER xcolor
 \RequirePackage[dvipsnames]{xcolor}
-\RequirePackage{tcolorbox}
-\tcbuselibrary{skins,breakable}
 
 
-
-\newcommand{\plaincolor}{CornflowerBlue}
-\newcommand{\defcolor}{Emerald}
-\newcommand{\remarkcolor}{Periwinkle}
-\newcommand{\setplaincolor}[1]{
-    \renewcommand{\plaincolor}{#1}
-}
-\newcommand{\setdefcolor}[1]{
-    \renewcommand{\defcolor}{#1}
-}
-\newcommand{\setremarkcolor}[1]{
-    \renewcommand{\remarkcolor}{#1}
-}
-
-%boxed plain style
-\declaretheoremstyle[
-    spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries\sffamily\color{\plaincolor},
-    bodyfont=\itshape,
-    postheadspace=1em,
-]{boxedplainstyle}
-
-%boxed definition style
-\declaretheoremstyle[
-    spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries\sffamily\color{\defcolor},
-    bodyfont=\normalfont,
-    postheadspace=1em,
-]{boxeddefstyle}
-
-%boxed remark style
-\declaretheoremstyle[
-    spaceabove=6pt, spacebelow=6pt,
-    headfont=\normalfont\bfseries\sffamily\color{\remarkcolor},
-    bodyfont=\normalfont,
-    postheadspace=1em,
-]{boxedremarkstyle}
-
-\declaretheorem[style=boxedplainstyle,name=Theorem, sibling=theorem]{boxedtheorem}
-\declaretheorem[style=boxedplainstyle,name=Lemma, sibling=theorem]{boxedlemma}
-\declaretheorem[style=boxedplainstyle,name=Proposition, sibling=theorem]{boxedproposition}
-\declaretheorem[style=boxeddefstyle,name=Corollary, sibling=theorem]{boxedcorollary}
-\declaretheorem[style=boxeddefstyle,name=Conjecture, sibling=theorem]{boxedconjecture}
-\declaretheorem[style=boxeddefstyle,name=Claim, sibling=theorem]{boxedclaim}
-\declaretheorem[style=boxeddefstyle,name=Definition, sibling=theorem]{boxeddefinition}
-\declaretheorem[style=boxeddefstyle,name=Problem, sibling=theorem]{boxedproblem}
-\declaretheorem[style=boxeddefstyle,name=Example, sibling=theorem]{boxedexample}
-\declaretheorem[style=boxeddefstyle,name=Question,sibling=theorem]{boxedquestion}
-\declaretheorem[style=boxedremarkstyle,name=Remark, sibling=theorem]{boxedremark}
-
-\foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedproblem,boxedexample,boxedquestion,boxedremark}{
-    \AtBeginEnvironment{\env}{%
-        \setlist[enumerate]{font=\normalfont}
-  }
-}
-
-
-
-%%colorboxes
-\newenvironment{plainframe}{\begin{tcolorbox}[
-    enhanced jigsaw,breakable,
-    colback=\plaincolor!5!white,
-    colframe=\plaincolor,
-    sharp corners,
-    boxrule=0mm,
-    left=0.5mm,
-    top=0.8mm,
-    bottom=0.8mm,
-    before skip=8pt plus 2pt,
-    after skip=8pt plus 2pt
-    ]
-}{\end{tcolorbox}}
-
-\newenvironment{defframe}{\begin{tcolorbox}[
-    enhanced jigsaw,breakable,
-    colback=\defcolor!5!white,
-    colframe=\defcolor,
-    sharp corners,
-    boxrule=0mm,
-    left=0.5mm,
-    top=0.8mm,
-    bottom=0.8mm,
-    before skip=8pt plus 2pt,
-    after skip=8pt plus 2pt
-    ]
-}{\end{tcolorbox}}
-
-\newenvironment{remarkframe}{\begin{tcolorbox}[
-    enhanced jigsaw,breakable,
-    % fonttitle=\sffamily\fi\bfseries,
-    colback=\remarkcolor!5!white,
-    colframe=\remarkcolor,
-    sharp corners,
-    boxrule=0mm,
-    left=0.5mm,
-    top=0.8mm,
-    bottom=0.8mm,
-    before skip=8pt plus 2pt,
-    after skip=8pt plus 2pt
-    ]
-}{\end{tcolorbox}}
-
-\newenvironment{theorembox}{\begin{plainframe}\begin{boxedtheorem}}{\end{boxedtheorem}\end{plainframe}}
-\newenvironment{lemmabox}{\begin{plainframe}\begin{boxedlemma}}{\end{boxedlemma}\end{plainframe}}
-\newenvironment{propbox}{\begin{plainframe}\begin{boxedproposition}}{\end{boxedproposition}\end{plainframe}}
-\newenvironment{corollarybox}{\begin{defframe}\begin{boxedcorollary}}{\end{boxedcorollary}\end{defframe}}
-\newenvironment{conjecturebox}{\begin{defframe}\begin{boxedconjecture}}{\end{boxedconjecture}\end{defframe}}
-\newenvironment{claimbox}{\begin{defframe}\begin{boxedclaim}}{\end{boxedclaim}\end{defframe}}
-\newenvironment{defbox}{\begin{defframe}\begin{boxeddefinition}}{\end{boxeddefinition}\end{defframe}}
-\newenvironment{problembox}{\begin{defframe}\begin{boxedproblem}}{\end{boxedproblem}\end{defframe}}
-\newenvironment{examplebox}{\begin{defframe}\begin{boxedexample}}{\end{boxedexample}\end{defframe}}
-\newenvironment{questionbox}{\begin{defframe}\begin{boxedquestion}}{\end{boxedquestion}\end{defframe}}
-\newenvironment{remarkbox}{\begin{remarkframe}\begin{boxedremark}}{\end{boxedremark}\end{remarkframe}}
-
-
+% \foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark}{
+%     \AtBeginEnvironment{\env}{%
+%         \setlist[enumerate]{font=\normalfont}
+%   }
+% }
+  
 
 % I use this enough to need this
 \RequirePackage{graphicx} %graphics stuff
 \definecolor{todocolor}{rgb}{0.8, 0.1, 0.1}
 \NewDocumentCommand{\TODO}{o}{\textcolor{todocolor}{TODO\IfNoValueF{#1}{: #1}}}
 
-
-%Typography
-\ifbool{mrk@causual}{
-    %casual sans-serif stuff
-    % \RequirePackage{lmodern}
-    \RequirePackage{cmbright}
-    % \usefont{T1}{cmtl}{m}{n}
-    \RequirePackage[defaultsans, scale=0.95]{lato}
-}{
-    \RequirePackage{lmodern}
-    \usefont{OT1}{lmr}{m}{n}
-    \setkomafont{section}{\Large\rmfamily\bfseries}
-    \addtokomafont{disposition}{\rmfamily}
-    % \allsectionsfont{\normalfont\bfseries}
-    % \RedeclareSectionCommand[\normalfont\bfseries]{section}
-}
 \SetMathAlphabet\mathrm{normal}{OT1}{\rmdefault}{m}{n}
 \SetMathAlphabet\mathsf{bold}{OT1}{\sfdefault}{b}{n}
 \RequirePackage{microtype}
@@ -363,17 +221,6 @@
 \ifmrk@date\else\date{~\vspace{-3em}}\fi
 
 % Stylize things
-% \patchcmd{\@maketitle}{\huge}{\large}{}{}
-\setkomafont{author}{\normalsize\scshape}
-\setkomafont{date}{\normalsize}
-% \setkomafont{disposition}{\normalcolor\bfseries}
-% \ifmrk@header\setkomafont{pageheadfoot}{\normalcolor}
-\RedeclareSectionCommand[beforeskip=0.4\baselineskip]{paragraph}
-
-% Section numbers in the margin
-\ifbool{mrk@marginnum}{
-    \RenewDocumentCommand{\sectionlinesformat}{m m m m}{\makebox[0pt][r]{#3}#4}
-}{}
 
 \allowdisplaybreaks
 \AtBeginDocument{
@@ -407,34 +254,7 @@
 \newcommand{\obold}[1]{{\bfseries\color{BlueViolet}#1}}
 
 
-%from chez.sty 
-%currently deactiveated until further notice
-\newcommand*{\mrk@drawmarginnumber}[1]{
-    \node[anchor=north east,
-        inner sep=0pt,
-        xshift=-0.8em,
-        yshift=-1.865ex,
-        font=\ifmrk@sf\sffamily\fi\bfseries\color{tcbcoltitle}\mathstrut\small]
-        at (frame.north west) {#1};
-}
-\tcbset{
-    mrkthmmargin/.style={
-        enhanced jigsaw,
-        theorem name,
-        extras unbroken and first={
-            overlay={
-                \ifdef{\thetcbthmcounter}{
-                    \mrk@drawmarginnumber{\thetcbthmcounter}
-                }{
-                    \ifdef{\thetcbcounter}{\mrk@drawmarginnumber{\thetcbcounter}}
-                }
-            },
-        },
-    },
-    mrkthm/.append style=mrkthmmargin,
-}
-	% TODO: footnotes
-	% TODO: custom package options so that environment colors can be chosen at start for example [definition=Cerulean, problem=Fuchsia...]
+
 
 % Redefine to reduce surrounding spacing
 \RenewDocumentEnvironment{proof}{o}{\pushQED{$\square$}\par\noindent\textit{Proof\IfNoValueF{#1}{ (#1)}}.}{\hfill\popQED\par\medskip}
@@ -460,6 +280,8 @@
 \DeclarePairedDelimiter{\Verts}{\lVert}{\rVert}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\RenewDocumentCommand{\l}{}{\left}
+\RenewDocumentCommand{\r}{}{\right}
 
 % Semantically-named delimiters - from chezbase.sty
 \NewDocumentCommand{\abs}{}{\verts}
@@ -467,29 +289,85 @@
 \NewDocumentCommand{\norm}{}{\Verts}
 \NewDocumentCommand{\brac}{}{\angles}
 
+
+
 % Symbols - from chezbase.sty
 \NewDocumentCommand{\eps}{}{\varepsilon}
 \NewDocumentCommand{\nullset}{}{\varnothing}
 
-% Sets
-% Programmatically set mathbb macros - macro thanks to Phelype Oleinik and David Carlisle @Tex Stackexchange
-\ExplSyntaxOn
-\clist_map_inline:nn {B,C,D,E,F,H,I,J,K,M,N,O,P,Q,R,U,V,X,Y,Z}
-  {
-    \exp_args:Nc \NewDocumentCommand { \str_lowercase:n {#1#1} } { o }
-      {\ensuremath{\mathbb{#1}\IfNoValueF{##1}{^{##1}}}}
-  }
-\clist_map_inline:nn {ad,im,gr,id,res,pos}{
-	\exp_args:Nc \DeclareMathOperator{#1}{#1}
-}
-\ExplSyntaxOff
+\RenewDocumentCommand{\aa}{}{\mathbb{A}}
+\NewDocumentCommand{\bb}{}{\mathbb{B}}
+\NewDocumentCommand{\cc}{}{\mathbb{C}}
+\NewDocumentCommand{\dd}{}{\mathbb{D}}
+\NewDocumentCommand{\ee}{}{\mathbb{E}}
+\NewDocumentCommand{\ff}{}{\mathbb{F}}
+\NewDocumentCommand{\hh}{}{\mathbb{H}}
+\RenewDocumentCommand{\gg}{}{\mathbb{G}}
+\NewDocumentCommand{\gggg}{}{\gg}
+\NewDocumentCommand{\ii}{}{\mathbb{I}}
+\NewDocumentCommand{\jj}{}{\mathbb{J}}
+\NewDocumentCommand{\kk}{}{\mathbb{K}}
+\RenewDocumentCommand{\ll}{}{\mathbb{L}}
+\NewDocumentCommand{\llll}{}{\ll}
+\NewDocumentCommand{\mm}{}{\mathbb{M}}
+\NewDocumentCommand{\nn}{}{\mathbb{N}}
+\NewDocumentCommand{\oo}{}{\mathbb{O}}
+\NewDocumentCommand{\pp}{}{\mathbb{P}}
+\NewDocumentCommand{\qq}{}{\mathbb{Q}}
+\NewDocumentCommand{\rr}{}{\mathbb{R}}
+\RenewDocumentCommand{\ss}{}{\mathbb{S}}
+\RenewDocumentCommand{\tt}{}{\mathbb{T}}
+\NewDocumentCommand{\uu}{}{\mathbb{U}}
+\NewDocumentCommand{\vv}{}{\mathbb{V}}
+\NewDocumentCommand{\ww}{}{\mathbb{W}}
+\NewDocumentCommand{\xx}{}{\mathbb{X}}
+\NewDocumentCommand{\yy}{}{\mathbb{Y}}
+\NewDocumentCommand{\zz}{}{\mathbb{Z}}
+
+\NewDocumentCommand{\aaa}{}{\mathcal{A}}
+\NewDocumentCommand{\bbb}{}{\mathcal{B}}
+\NewDocumentCommand{\ccc}{}{\mathcal{C}}
+\NewDocumentCommand{\ddd}{}{\mathcal{D}}
+\NewDocumentCommand{\eee}{}{\mathcal{E}}
+\NewDocumentCommand{\fff}{}{\mathcal{F}}
+\NewDocumentCommand{\hhh}{}{\mathcal{H}}
+\NewDocumentCommand{\iii}{}{\mathcal{I}}
+\NewDocumentCommand{\jjj}{}{\mathcal{J}}
+\NewDocumentCommand{\kkk}{}{\mathcal{K}}
+\RenewDocumentCommand{\lll}{}{\mathcal{L}}
+\NewDocumentCommand{\mmm}{}{\mathcal{M}}
+\NewDocumentCommand{\nnn}{}{\mathcal{N}}
+\NewDocumentCommand{\ooo}{}{\mathcal{O}}
+\NewDocumentCommand{\ppp}{}{\mathcal{P}}
+\NewDocumentCommand{\qqq}{}{\mathcal{Q}}
+\NewDocumentCommand{\rrr}{}{\mathcal{R}}
+\NewDocumentCommand{\sss}{}{\mathcal{S}}
+\NewDocumentCommand{\ttt}{}{\mathcal{T}}
+\NewDocumentCommand{\uuu}{}{\mathcal{U}}
+\NewDocumentCommand{\vvv}{}{\mathcal{V}}
+\NewDocumentCommand{\www}{}{\mathcal{W}}
+\NewDocumentCommand{\xxx}{}{\mathcal{X}}
+\NewDocumentCommand{\yyy}{}{\mathcal{Y}}
+\NewDocumentCommand{\zzz}{}{\mathcal{Z}}
+
+
+
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\pos}{pos}
+% \DeclareMathOperator{\endo}{End}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\hilb}{Hilb}
+
 
 \RequirePackage{tikz-cd} %needs to be loaded after xcolors (probably)
 % General - from chezbase.sty
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
 \RenewDocumentCommand{\Re}{}{\operatorname{Re}} % can't use DeclareMathOperator because already defined
-\RenewDocumentCommand{\Im}{}{\operatorname{Im}}
 \DeclareMathOperator{\cis}{cis}
 \DeclareMathOperator{\arccosh}{arccosh}
 \DeclareMathOperator{\arcsinh}{arcsinh}
@@ -500,8 +378,16 @@
 \DeclareMathOperator{\divv}{div}
 \DeclareMathOperator{\gal}{Gal}
 \DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\img}{im}
+\DeclareMathOperator{\lie}{Lie}
+\DeclareMathOperator{\spntxt}{span}
+\NewDocumentCommand{\spn}{m}{\spntxt\{{#1}\}}
 
+\DeclareMathOperator{\homm}{Hom}
+\RenewDocumentCommand{\hom}{o m m}{\IfNoValueTF{#1}{\homm}{\homm_{#1}}\left({#2}, {#3}\right)}
 
+\RenewDocumentCommand{\th}{}{\text{th}}
 % Number Theory
 \RenewDocumentCommand{\mod}{m}{\ \mathrm{mod}\ #1}
 \DeclareMathOperator*{\lcm}{lcm}
@@ -543,10 +429,11 @@
 \NewDocumentCommand\vvec{m m}{\ensuremath{\begin{pmatrix}#1\\#2\end{pmatrix}}}
 \NewDocumentCommand\hvec{m m}{\ensuremath{\begin{pmatrix}#1&#2\end{pmatrix}}}
 
-\NewDocumentCommand\mbb{m}{\ensuremath{\mathbb{#1}}}
+\NewDocumentCommand\mbb{m}{\ensuremath{\mathcal{#1}}}
 \NewDocumentCommand\scr{m}{\ensuremath{\EuScript{#1}}}
 \NewDocumentCommand\mf{m}{\ensuremath{\mathfrak{#1}}}
 \NewDocumentCommand\msf{m}{\ensuremath{\mathsf{#1}}}
+\NewDocumentCommand\mcal{m}{\ensuremath{\mathcal{#1}}}
 
 \NewDocumentCommand\into{}{\ensuremath{\hookrightarrow}}
 \NewDocumentCommand\onto{}{\ensuremath{\twoheadrightarrow}}
@@ -565,4 +452,6 @@
 \NewDocumentCommand{\bet}{m m}{\text{Beta}\left(#1,#2\right)}
 \NewDocumentCommand{\pois}{m}{\text{Pois}\left(#1\right)}
 \NewDocumentCommand{\gam}{m m}{\text{Gamma}\left(#1,#2\right)}
+
+
 
