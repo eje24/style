@@ -178,6 +178,7 @@
 \declaretheorem[style=plain, sibling=theorem]{proposition}
 \declaretheorem[style=plain, sibling=theorem]{corollary}
 \declaretheorem[style=plain, sibling=theorem]{conjecture}
+\declaretheorem[style=plain, sibling=theorem]{claim}
 \declaretheorem[style=definition, sibling=theorem]{definition}
 \declaretheorem[style=definition, sibling=theorem]{problem}
 \declaretheorem[style=definition, sibling=theorem]{example}
@@ -246,7 +247,7 @@
 \declaretheorem[style=boxeddefstyle,name=Question,sibling=theorem]{boxedquestion}
 \declaretheorem[style=boxedremarkstyle,name=Remark, sibling=theorem]{boxedremark}
 
-\foreach \env in {lemma,theorem,proposition,conjecture,corollary,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedproblem,boxedexample,boxedquestion,boxedremark}{
+\foreach \env in {lemma,theorem,proposition,conjecture,corollary,claim,definition,remark,boxedtheorem,boxedlemma,boxedproposition,boxedcorollary,boxedconjecture,boxedclaim,boxeddefinition,boxedproblem,boxedexample,boxedquestion,boxedremark}{
     \AtBeginEnvironment{\env}{%
         \setlist[enumerate]{font=\normalfont}
   }
