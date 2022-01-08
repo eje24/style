@@ -2,7 +2,7 @@
 Below is a list of functionality that will eventually be implemented.
 - Add the ability to make center of header random command in latex
 - "Sources consulted" environment for psets
-- add in exercises
+- add in exercises, claims, results, facts
 - add in separate color group for problems and exercises
 - ability to set theorem numbering (ie Exercise 1.1 instead of Exercise 1)
 - add in custom boxed environment names as in choi.sty (`\begin{claimbox}[Name of Claim]`)

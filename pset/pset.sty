@@ -474,7 +474,7 @@
 % Sets
 % Programmatically set mathbb macros - macro thanks to Phelype Oleinik and David Carlisle @Tex Stackexchange
 \ExplSyntaxOn
-\clist_map_inline:nn { F,N,Z,Q,R,C,H }
+\clist_map_inline:nn { E, F,N,Z,Q,R,C,H }
   {
     \exp_args:Nc \NewDocumentCommand { #1#1 } { o }
       {\ensuremath{\mathbb{#1}\IfNoValueF{##1}{^{##1}}}}
